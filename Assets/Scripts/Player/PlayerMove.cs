@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float speedMove;
-    [SerializeField] private float xMove;
-    [SerializeField] private float zMove;
+    float xMove;
+    float zMove;
     CharacterController player;
     Vector3 moveDirection;
 
