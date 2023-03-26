@@ -89,7 +89,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -291,7 +291,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 1
+      displayed: 0
       snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -430,9 +430,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -127.49959, y: -18.816751, z: 4.637519}
+    m_Target: {x: -2.2889612, y: 0.054743122, z: -0.123580545}
     speed: 2
-    m_Value: {x: -127.49959, y: -18.816751, z: 4.637519}
+    m_Value: {x: -2.2889612, y: 0.054743122, z: -0.123580545}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -479,13 +479,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.055140804, y: -0.6935078, z: 0.053364407, w: 0.7163608}
+    m_Target: {x: -0.1754278, y: 0.6997698, z: -0.18370473, w: -0.6677778}
     speed: 2
-    m_Value: {x: -0.055140804, y: 0.6935078, z: -0.053364407, w: -0.7163608}
+    m_Value: {x: -0.17541663, y: 0.6997253, z: -0.18369304, w: -0.6677353}
   m_Size:
-    m_Target: 75.61704
+    m_Target: 2.7782197
     speed: 2
-    m_Value: 72.36081
+    m_Value: 2.7782197
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -503,7 +503,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: 0.055140804, y: -0.6935078, z: 0.053364407, w: 0.7163608}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -594,9 +594,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 22af0000
-      m_LastClickedID: 44834
-      m_ExpandedIDs: 8022ffff4c23ffff2226ffff9464ffff9a66ffff36fbffff7858000082580000a8580000fc5800002e590000c2590000f0590000105a0000345a00004c5a0000965a0000265b00002e5b00007eae0000beae0000
+      m_SelectedIDs: 92fe0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: d8cbfdff04ebfdffa4fefdffb601feff4803feff1416feffe21cfeff6e27feff8c49feff3c4bfeff0859feffbc74feff7ab0feff8ab0feff1cd9feff64e7feff06e8feffa2e8fefff008ffff8022ffff4c23ffff2226ffff9464ffff9a66ffff36fbffff7858000082580000a8580000fc5800002e590000c2590000f0590000105a0000345a00004c5a0000965a0000265b00002e5b00007eae0000beae0000a6d8000028da0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -688,22 +688,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Textures/MVP
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Textures/MVP
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity\Creating-Space
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fc5b0000
-    m_LastClickedID: 23548
-    m_ExpandedIDs: 00000000ee5b0000f05b0000f25b0000f45b0000fe5b000000ca9a3b
+    m_SelectedIDs: 6cf50000
+    m_LastClickedID: 62828
+    m_ExpandedIDs: 00000000ee5b0000f05b0000f25b0000f45b0000fe5b000068f5000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -756,8 +756,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 22af0000
-    m_LastClickedInstanceID: 44834
+    m_SelectedInstanceIDs: 92fe0000
+    m_LastClickedInstanceID: 65170
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
@@ -849,7 +849,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 180
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
