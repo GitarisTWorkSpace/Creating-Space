@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float bulletLife = 3f;
+    public float bulletLife = 3f;// время жизни пули
 
     private void Awake()
     {
