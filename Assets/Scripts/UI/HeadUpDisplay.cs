@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeadUpDisplay : MonoBehaviour
 {
     public GameObject PausePanel;
     private bool pauseIsActive = false;
+
+    public void ToStart()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 
     private void ActivePause()
     {
