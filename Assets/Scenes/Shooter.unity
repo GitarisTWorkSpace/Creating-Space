@@ -2793,7 +2793,7 @@ GameObject:
   - component: {fileID: 547468808}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2810,7 +2810,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a2b01f817fbf84eb86bc0841f44fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaValue: 0
+  maxValueStamina: 100
+  minValueStamina: -20
+  staminaMinus: 5
+  staminaPlus: 25
   speedMove: 0.4
+  speedRun: 0.8
+  speedCurrent: 0
 --- !u!143 &547468805
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2858,7 +2865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cde23999016884faa51a9ff85d765d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensivity: 3
+  sensivity: 5
   smoothTime: 0.1
   playerCamera: {fileID: 1760759094}
   player: {fileID: 547468803}
@@ -10346,7 +10353,7 @@ GameObject:
   - component: {fileID: 1760759093}
   m_Layer: 0
   m_Name: Player Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10726,7 +10733,7 @@ GameObject:
   - component: {fileID: 1825335344}
   m_Layer: 0
   m_Name: Hand
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10758,7 +10765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2312879e8c708846a80463b533506c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1760759091}
+  camera: {fileID: 1760759094}
   distance: 15
 --- !u!1 &1843445406
 GameObject:

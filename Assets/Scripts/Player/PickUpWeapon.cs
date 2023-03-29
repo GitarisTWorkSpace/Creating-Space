@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpWeapon : MonoBehaviour
 {
-    public GameObject camera;
+    public Camera camera;
     public float distance = 15f;
     GameObject currentWeapon;
     bool canPickUp;
