@@ -8,8 +8,10 @@ public class Weapon : MonoBehaviour
     public Camera playerCamera;
     public Transform spawnBullet;
 
-    public float shootForce;
-    public float spread;
+    [SerializeField] public bool weaponInHand = false;
+
+    [SerializeField] private float shootForce;
+    [SerializeField] private float spread;
 
     private void Shoot()
     {
@@ -42,7 +44,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && weaponInHand)
         {
             Shoot();
         }
