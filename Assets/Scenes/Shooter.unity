@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571385, b: 0.30692253, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -751,8 +751,8 @@ Canvas:
   m_GameObject: {fileID: 119832799}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 1760759094}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1531871300}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2031,7 +2031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5687502296786191355, guid: a8899406668dc354fab47f459c83f673, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.6381612
+      value: -3.73
       objectReference: {fileID: 0}
     - target: {fileID: 5687502296786191355, guid: a8899406668dc354fab47f459c83f673, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2039,7 +2039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5687502296786191355, guid: a8899406668dc354fab47f459c83f673, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.524237
+      value: 7.74
       objectReference: {fileID: 0}
     - target: {fileID: 5687502296786191355, guid: a8899406668dc354fab47f459c83f673, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2791,7 +2791,7 @@ GameObject:
   - component: {fileID: 547468804}
   - component: {fileID: 547468807}
   - component: {fileID: 547468808}
-  - component: {fileID: 547468809}
+  - component: {fileID: 547468811}
   - component: {fileID: 547468810}
   m_Layer: 0
   m_Name: Player
@@ -2884,25 +2884,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PausePanel: {fileID: 1178720111}
---- !u!114 &547468809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547468803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb5e0348f9dac942afda665930b5691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthPoint: 50
-  currentWeaponAmmo: 0
-  currentAmmoINWeapon: 0
-  HealthText: {fileID: 1546500983}
-  Ammo: {fileID: 1006827432}
-  InWeapon: {fileID: 1573776904}
-  HealthSlider: {fileID: 714630653}
 --- !u!54 &547468810
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2919,6 +2900,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &547468811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547468803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb5e0348f9dac942afda665930b5691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoint: 100
+  maxHealthPoint: 100
+  currentWeaponAmmo: 00000000000000000000000000000000
+  maxCurrentWeaponAmmo: 00000000460000002c01000032000000
+  currentAmmoInWeapon: 0500000011000000320000000a000000
+  maxCurrentAmmoInWeapon: 00000000070000001e00000005000000
+  HealthText: {fileID: 1546500983}
+  Ammo: {fileID: 1006827432}
+  InWeapon: {fileID: 1573776904}
+  HealthSlider: {fileID: 714630653}
+  indexOfWepon: 0
 --- !u!1 &588060543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3749,6 +3753,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -5231618321615506139, guid: 45d58aac04aa0be469cc346d2d7f2612, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 547468803}
+    - target: {fileID: -5231618321615506139, guid: 45d58aac04aa0be469cc346d2d7f2612, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1760759094}
@@ -4411,7 +4419,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1580018241}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8917,7 +8925,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1580018241}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9128,8 +9136,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1338106399}
-  - {fileID: 1006827431}
   - {fileID: 1573776903}
+  - {fileID: 1006827431}
   m_Father: {fileID: 119832803}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10644,9 +10652,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3711086079229953544, guid: 29eaac1988b463a49a01de93ef9281e0, type: 3}
-      propertyPath: shootForce
-      value: 200
-      objectReference: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 547468803}
     - target: {fileID: 3711086079229953544, guid: 29eaac1988b463a49a01de93ef9281e0, type: 3}
       propertyPath: playerCamera
       value: 
@@ -10881,6 +10889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1760759094}
+  player: {fileID: 547468803}
   distance: 15
 --- !u!1 &1843445406
 GameObject:

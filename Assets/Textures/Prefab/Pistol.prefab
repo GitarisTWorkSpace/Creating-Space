@@ -160,7 +160,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 3418770069429239289, guid: 64193fe16cc6f534d89eebcd69780a9c, type: 3}
+  player: {fileID: 0}
   playerCamera: {fileID: 0}
   spawnBullet: {fileID: 4626115871880014823}
+  indexWeapon: 2
+  ammo: 0
+  ammoInWeapon: 0
+  maxAmmoInWeapon: 0
+  weaponInHand: 0
   shootForce: 200
   spread: 0
