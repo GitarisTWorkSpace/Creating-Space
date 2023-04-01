@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour
 
     public Slider HealthSlider;
 
-    [SerializeField] public int indexOfWepon = 1;
+    [SerializeField] public int indexOfWepon = 0;
 
     private void Update()
     {
@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
         HealthText.text = Mathf.Round(healthPoint).ToString();
         HealthSlider.value = healthPoint;
 
-        Ammo.text = currentWeaponAmmo[indexOfWepon - 1].ToString();
-        InWeapon.text = currentAmmoInWeapon[indexOfWepon - 1].ToString();
+        Ammo.text = currentWeaponAmmo[indexOfWepon].ToString();
+        InWeapon.text = currentAmmoInWeapon[indexOfWepon].ToString();
     }
 }

@@ -51,6 +51,7 @@ public class Weapon : MonoBehaviour
 
     private void Reloading()
     {
+        ammo = player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon];
         if (maxAmmoInWeapon == ammoInWeapon)
             return;
 
@@ -68,8 +69,6 @@ public class Weapon : MonoBehaviour
 
     private void Start() 
     {
-        player.GetComponent<Inventory>().indexOfWepon = indexWeapon;
-        indexWeapon--;
         ammo = player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon];
         ammoInWeapon = player.GetComponent<Inventory>().currentAmmoInWeapon[indexWeapon];
         maxAmmoInWeapon = player.GetComponent<Inventory>().maxCurrentAmmoInWeapon[indexWeapon];

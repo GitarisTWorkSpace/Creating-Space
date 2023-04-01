@@ -2025,6 +2025,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ammonation
       objectReference: {fileID: 0}
+    - target: {fileID: 3919496874465642937, guid: a8899406668dc354fab47f459c83f673, type: 3}
+      propertyPath: ammo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919496874465642937, guid: a8899406668dc354fab47f459c83f673, type: 3}
+      propertyPath: indexOfWepon
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5687502296786191355, guid: a8899406668dc354fab47f459c83f673, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2035,7 +2043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5687502296786191355, guid: a8899406668dc354fab47f459c83f673, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.10000023
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 5687502296786191355, guid: a8899406668dc354fab47f459c83f673, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2912,11 +2920,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb5e0348f9dac942afda665930b5691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 100
+  healthPoint: 50
   maxHealthPoint: 100
   currentWeaponAmmo: 00000000000000000000000000000000
   maxCurrentWeaponAmmo: 00000000460000002c01000032000000
-  currentAmmoInWeapon: 0500000011000000320000000a000000
+  currentAmmoInWeapon: 00000000070000001e00000005000000
   maxCurrentAmmoInWeapon: 00000000070000001e00000005000000
   HealthText: {fileID: 1546500983}
   Ammo: {fileID: 1006827432}
@@ -3756,6 +3764,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 547468803}
+    - target: {fileID: -5231618321615506139, guid: 45d58aac04aa0be469cc346d2d7f2612, type: 3}
+      propertyPath: indexWeapon
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -5231618321615506139, guid: 45d58aac04aa0be469cc346d2d7f2612, type: 3}
       propertyPath: playerCamera
       value: 
@@ -10656,6 +10668,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 547468803}
     - target: {fileID: 3711086079229953544, guid: 29eaac1988b463a49a01de93ef9281e0, type: 3}
+      propertyPath: indexWeapon
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711086079229953544, guid: 29eaac1988b463a49a01de93ef9281e0, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1760759094}
@@ -12293,7 +12309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2803326367139614852, guid: 25939c838aa735f4e8814b8c5d09fc92, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.10000047
+      value: 1.53
       objectReference: {fileID: 0}
     - target: {fileID: 2803326367139614852, guid: 25939c838aa735f4e8814b8c5d09fc92, type: 3}
       propertyPath: m_LocalPosition.z
