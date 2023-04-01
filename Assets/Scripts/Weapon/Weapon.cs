@@ -47,22 +47,30 @@ public class Weapon : MonoBehaviour
         currentBullet.GetComponent<Rigidbody>().AddForce(dirWithSpread.normalized * shootForce, ForceMode.Impulse);
 
         ammoInWeapon--;
+        ammo = player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon];
     }
 
     private void Reloading()
     {
-        ammo = player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon];
         if (maxAmmoInWeapon == ammoInWeapon)
             return;
 
-        if (ammo > maxAmmoInWeapon)
+        if (ammo == 0)
+            return;
+
+        if (ammo >= maxAmmoInWeapon)
         {
-            ammo -= maxAmmoInWeapon;
+            ammo -= maxAmmoInWeapon - ammoInWeapon;
+            ammoInWeapon = maxAmmoInWeapon;
+        }
+        else if (ammo < maxAmmoInWeapon && (ammo > (maxAmmoInWeapon - ammoInWeapon)))
+        {
+            ammo -= maxAmmoInWeapon - ammoInWeapon;
             ammoInWeapon = maxAmmoInWeapon;
         }
         else
         {
-            ammoInWeapon = ammo;
+            ammoInWeapon += ammo;
             ammo = 0;
         }
     }
@@ -86,6 +94,8 @@ public class Weapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Reloading();
+            player.GetComponent<Inventory>().currentAmmoInWeapon[indexWeapon] = ammoInWeapon;
+            player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon] = ammo;
         }
     }
 }
