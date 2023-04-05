@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1666812045423018950}
   - component: {fileID: 5823410264099580246}
   - component: {fileID: -5231618321615506139}
-  m_Layer: 0
-  m_Name: automate
+  m_Layer: 6
+  m_Name: Automate
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerCamera: {fileID: 0}
   spawnBullet: {fileID: 2323766126608782383}
-  indexWeapon: 3
+  indexWeapon: 2
   ammo: 0
   ammoInWeapon: 0
   maxAmmoInWeapon: 0

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4897325161627083999}
   - component: {fileID: 8738809674143238206}
   - component: {fileID: 3711086079229953544}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pistol
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerCamera: {fileID: 0}
   spawnBullet: {fileID: 4626115871880014823}
-  indexWeapon: 2
+  indexWeapon: 1
   ammo: 0
   ammoInWeapon: 0
   maxAmmoInWeapon: 0

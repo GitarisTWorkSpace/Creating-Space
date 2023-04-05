@@ -7,7 +7,7 @@ public class UserInterface : MonoBehaviour
 {
     public void NewGameButton()
     {
-        SceneManager.LoadScene("Shooter");
+        SceneManager.LoadScene("MVP");
     }
 
     public void QuitButton()
