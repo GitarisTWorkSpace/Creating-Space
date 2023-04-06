@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Zombie"){
-            GetComponent<Zombie>().healthPointZ -= 30f;
+            collision.gameObject.GetComponent<Zombie>().healthPointZ -= 30f;
         }
         Destroy(gameObject);
     }
