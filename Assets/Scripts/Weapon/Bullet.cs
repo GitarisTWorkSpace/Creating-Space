@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float bulletLife = 3f;// время жизни пули
+	public float bulletLife = 3f;
+	[SerializeField] public float damage = 30f;
 
-    private void Awake()
-    {
-        Destroy(gameObject, bulletLife);
-    }
+	private void Awake()
+	{
+		Destroy(gameObject, bulletLife);
+	}
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Zombie"){
-            collision.gameObject.GetComponent<Zombie>().healthPointZ -= 30f;
-        }
-        Destroy(gameObject);
-    }
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag == "Zombie")
+		{
+			collision.gameObject.GetComponent<Zombie>().healthPointZ -= damage;
+		}
+		Destroy(gameObject);
+	}
 }
