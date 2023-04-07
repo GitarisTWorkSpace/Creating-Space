@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17808077, g: 0.21672234, b: 0.26915523, a: 1}
+  m_IndirectSpecularColor: {r: 0.17808071, g: 0.21672225, b: 0.2691551, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,6 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 761422804}
+  - component: {fileID: 761422805}
   m_Layer: 0
   m_Name: 'Spawner '
   m_TagString: Untagged
@@ -429,6 +430,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &761422805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761422803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8f966c7fb6e624f9bc794cb304e1a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammo: {fileID: 2014571071197544155, guid: a8899406668dc354fab47f459c83f673, type: 3}
+  player: {fileID: 514661684}
+  healing: {fileID: 8357637445365198244, guid: 25939c838aa735f4e8814b8c5d09fc92, type: 3}
+  healthSpawners:
+  - {fileID: 75015324}
+  - {fileID: 1155792518}
+  - {fileID: 1262109160}
+  ammoSpawners:
+  - {fileID: 998494750}
+  - {fileID: 500466639}
+  - {fileID: 898714303}
+  ammoInWeapon: 
+  waveIsDone: 0
 --- !u!1001 &882853530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -446,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8963535475094093155, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -109.999985
+      value: -110
       objectReference: {fileID: 0}
     - target: {fileID: 8963535475468594840, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
       propertyPath: m_AnchorMax.x
@@ -458,15 +484,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8963535475825323221, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -109.999985
+      value: -110
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963535475901897255, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8963535476310382944, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8963535476310382947, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
+      propertyPath: healthPoint
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8963535476613598453, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -109.999985
+      value: -110
       objectReference: {fileID: 0}
     - target: {fileID: 9131273878471938017, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
       propertyPath: m_Layer

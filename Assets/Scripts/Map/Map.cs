@@ -12,6 +12,7 @@ public class Map : MonoBehaviour
 	[SerializeField] public GameObject[] ammoSpawners;
 
 	public int[] ammoInWeapon;
+	public bool waveIsDone = false;
 
 	private void Start()
 	{
@@ -33,4 +34,17 @@ public class Map : MonoBehaviour
 		healthCase.GetComponent<Heal>().healthPoint = health;
 		Instantiate(healthCase, spawner.transform.position, Quaternion.identity);
 	}
+
+    private void Update()
+    {
+        if (waveIsDone)
+        {
+			for (int i = 0; i < ammoSpawners.Length; i++)
+            {
+				SpawnAmmo(Random.Range(1, 3), Random.Range(1, 5), ammoSpawners[i]);
+				SpawnHealing(Random.Range(1, 5) * 10, healthSpawners[i]);
+			}
+			waveIsDone = false;
+        }
+    }
 }
