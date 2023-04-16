@@ -4,20 +4,20 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public float healthPoint = 100f;
-    [SerializeField] private float maxHealthPoint = 100f;
-    [SerializeField] public int[] currentWeaponAmmo = new int[4];
-    [SerializeField] public int[] maxCurrentWeaponAmmo = {0, 70, 300, 50};
-    [SerializeField] public int[] currentAmmoInWeapon = new int[4];
-    [SerializeField] public int[] maxCurrentAmmoInWeapon = {0, 7, 30, 5};
+    public float healthPoint = 100f; // Кол-во здаровья игрока 
+    [SerializeField] private float maxHealthPoint = 100f; // Максимальное здоровье игрока
+    [SerializeField] public int[] currentWeaponAmmo = new int[4]; // Кол-во патронов у игрока 
+    [SerializeField] public int[] maxCurrentWeaponAmmo = {0, 70, 300, 50}; // максимально возможное кол-во патронов у игрока
+    [SerializeField] public int[] currentAmmoInWeapon = new int[4]; // Кол-во патронов в обойме у игрока
+    [SerializeField] public int[] maxCurrentAmmoInWeapon = {0, 7, 30, 5}; // Максимально возможное кол-во патронов в обойме 
 
-    public TMP_Text HealthText;
-    public TMP_Text Ammo;
-    public TMP_Text InWeapon;
+    public TMP_Text HealthText; // UI текст со значением кол-во здоровья
+    public TMP_Text Ammo; // UI текст со значением кол-во патронов у игрока
+    public TMP_Text InWeapon; // UI текст со значением кол-во патронов в обойме
 
-    public Slider HealthSlider;
+    public Slider HealthSlider; // UI Слайдер для показания здоровья игрока
 
-    [SerializeField] public int indexOfWepon = 0;
+    [SerializeField] public int indexOfWepon = 0; // Индекс оружия в руках игрока.
 
     private void Update()
     {
