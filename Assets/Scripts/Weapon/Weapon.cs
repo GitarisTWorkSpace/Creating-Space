@@ -4,98 +4,101 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-	public GameObject bullet;
-	public GameObject player;
-	public Camera playerCamera;
-	public Transform spawnBullet;
-	public int indexWeapon;
-	public int ammo;
-	public int ammoInWeapon;
-	public int maxAmmoInWeapon;
+    
+    [SerializeField] public float damage;
+    [Header("Fire Rate in 0.second")]
+    [SerializeField] public float fireRate;
+    [Header("Reloading in second")]
+    [SerializeField] public float reload;
+    [Header("Range in units")]
+    [SerializeField] public float range;
+    [SerializeField] public int indexWeapon;
 
-	[SerializeField] public bool weaponInHand = false;
+    [SerializeField] private int ammoInWeapon;
+    [SerializeField] private int maxAmmoInWeapon;
+    [SerializeField] private int ammoInInventory;
+    [SerializeField] private int maxAmmoInInventory;
 
-	[SerializeField] private float shootForce;
-	[SerializeField] private float spread;
+    public bool isActive = false;
+    public bool isShword;
 
-	private void Shoot()
-	{
-		Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-		RaycastHit hit;
+    public ParticleSystem fireParticle;
+    public AudioClip fireSound;
+    public AudioSource audioSource;
+    public Camera playerCamera;
 
-		Vector3 targetPoint;
-		if (Physics.Raycast(ray, out hit))
-		{
-			targetPoint = hit.point;
-		}
-		else
-		{
-			targetPoint = ray.GetPoint(75);
-		}
+    private float nextFire;
 
-		Vector3 dirWithoutSpread = targetPoint - spawnBullet.position;
+    private void Awake()
+    {
+        playerCamera = FindAnyObjectByType<Camera>();
+    }
 
-		float x = Random.Range(-spread, spread);
-		float y = Random.Range(-spread, spread);
+    private void Update()
+    {
+        if(ammoInWeapon == 0 && !isShword)
+        {
+            isActive = false;
+        }
 
-		Vector3 dirWithSpread = dirWithoutSpread + new Vector3(x, y, 0);
+        if (Input.GetMouseButton(0) && Time.time > nextFire && isActive)
+        {
+            nextFire = Time.time + fireRate; 
+            Shoot();
+        }
 
-		GameObject currentBullet = Instantiate(bullet, spawnBullet.position, Quaternion.identity);
+        if (Input.GetKeyDown(KeyCode.R) && !isShword)
+        {
+            StartCoroutine(Reaload());
+        }
+    }
 
-		currentBullet.transform.forward = dirWithSpread.normalized;
+    public void Shoot()
+    {
+        RaycastHit hit;
 
-		currentBullet.GetComponent<Rigidbody>().AddForce(dirWithSpread.normalized * shootForce, ForceMode.Impulse);
+        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
+        {
+            Debug.Log("Попал в " + hit.transform.gameObject.name);
+            if (hit.transform.tag == "Zombie")
+            {
+                hit.transform.gameObject.GetComponent<Zombie>().healthPointZ -= damage;
+            }
+        }
 
-		ammoInWeapon--;
-		ammo = player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon];
-	}
+        ammoInWeapon--;
+    }
 
-	private void Reloading()
-	{
-		if (maxAmmoInWeapon == ammoInWeapon)
-			return;
+    private void Reloading()
+    {
+        if (maxAmmoInWeapon == ammoInWeapon)
+            return;
 
-		if (ammo == 0)
-			return;
+        if (ammoInInventory == 0)
+            return;
 
-		if (ammo >= maxAmmoInWeapon)
-		{
-			ammo -= maxAmmoInWeapon - ammoInWeapon;
-			ammoInWeapon = maxAmmoInWeapon;
-		}
-		else if (ammo < maxAmmoInWeapon && (ammo > (maxAmmoInWeapon - ammoInWeapon)))
-		{
-			ammo -= maxAmmoInWeapon - ammoInWeapon;
-			ammoInWeapon = maxAmmoInWeapon;
-		}
-		else
-		{
-			ammoInWeapon += ammo;
-			ammo = 0;
-		}
-	}
+        if (ammoInInventory >= maxAmmoInWeapon)
+        {
+            ammoInInventory -= maxAmmoInWeapon - ammoInWeapon;
+            ammoInWeapon = maxAmmoInWeapon;
+        }
+        else if (ammoInInventory < maxAmmoInWeapon && (ammoInInventory > (maxAmmoInWeapon - ammoInWeapon)))
+        {
+            ammoInInventory -= maxAmmoInWeapon - ammoInWeapon;
+            ammoInWeapon = maxAmmoInWeapon;
+        }
+        else
+        {
+            ammoInWeapon += ammoInInventory;
+            ammoInInventory = 0;
+        }
+    }
 
-	private void Start()
-	{
-		ammo = player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon];
-		ammoInWeapon = player.GetComponent<Inventory>().currentAmmoInWeapon[indexWeapon];
-		maxAmmoInWeapon = player.GetComponent<Inventory>().maxCurrentAmmoInWeapon[indexWeapon];
-	}
-
-	private void Update()
-	{
-		if (Input.GetMouseButtonDown(0) && weaponInHand && ammoInWeapon > 0)
-		{
-			Shoot();
-			player.GetComponent<Inventory>().currentAmmoInWeapon[indexWeapon] = ammoInWeapon;
-			player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon] = ammo;
-		}
-
-		if (Input.GetKeyDown(KeyCode.R))
-		{
-			Reloading();
-			player.GetComponent<Inventory>().currentAmmoInWeapon[indexWeapon] = ammoInWeapon;
-			player.GetComponent<Inventory>().currentWeaponAmmo[indexWeapon] = ammo;
-		}
-	}
+    private IEnumerator Reaload()
+    {
+        isActive = false;
+        Reloading();
+        yield return new WaitForSeconds(reload);
+        isActive = true;
+    }
 }

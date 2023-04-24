@@ -1599,7 +1599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2312879e8c708846a80463b533506c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 8963535476310382950}
+  camera: {fileID: 8963535475130500560}
   player: {fileID: 8963535476310382945}
   distance: 15
 --- !u!1 &8963535474976277498

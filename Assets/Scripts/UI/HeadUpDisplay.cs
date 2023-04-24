@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class HeadUpDisplay : MonoBehaviour
 {
     public GameObject PausePanel;
     private bool pauseIsActive = false;
+
+    public TMP_Text Ammo; // UI текст со значением кол-во патронов у игрока
+    public TMP_Text InWeapon; // UI текст со значением кол-во патронов в обойме
 
     public void ToStart()
     {
@@ -39,5 +42,6 @@ public class HeadUpDisplay : MonoBehaviour
     private void Update()
     {
         ActivePause();
+        
     }
 }

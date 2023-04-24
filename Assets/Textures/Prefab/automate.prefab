@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 199879783144337926}
   - component: {fileID: 1666812045423018950}
   - component: {fileID: 5823410264099580246}
-  - component: {fileID: -5231618321615506139}
+  - component: {fileID: -7306962197608542151}
   m_Layer: 6
-  m_Name: Automate
+  m_Name: automate
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-5231618321615506139
+--- !u!114 &-7306962197608542151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,17 +128,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ed1b57c8ae5c341aeb4cf27b34f72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 3418770069429239289, guid: 64193fe16cc6f534d89eebcd69780a9c, type: 3}
-  player: {fileID: 0}
+  damage: 30
+  fireRate: 0.1
+  reload: 5
+  range: 75
+  indexWeapon: 3
+  ammoInWeapon: 30
+  maxAmmoInWeapon: 30
+  ammoInInventory: 60
+  maxAmmoInInventory: 300
+  isActive: 0
+  fireParticle: {fileID: 0}
+  fireSound: {fileID: 0}
+  audioSource: {fileID: 0}
   playerCamera: {fileID: 0}
-  spawnBullet: {fileID: 2323766126608782383}
-  indexWeapon: 2
-  ammo: 0
-  ammoInWeapon: 0
-  maxAmmoInWeapon: 0
-  weaponInHand: 0
-  shootForce: 200
-  spread: 0
 --- !u!1 &2233223791896326670
 GameObject:
   m_ObjectHideFlags: 0
