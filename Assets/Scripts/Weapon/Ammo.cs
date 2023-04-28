@@ -11,7 +11,7 @@ public class Ammo : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			other.GetComponent<Inventory>().currentWeaponAmmo[indexOfWepon] += ammo;
+			//other.GetComponent<Inventory>().currentWeaponAmmo[indexOfWepon] += ammo;
 			Destroy(gameObject);
 		}
 	}

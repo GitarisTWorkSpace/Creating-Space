@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
             Shoot();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && !isShword)
+        if (Input.GetKeyDown(KeyCode.R) && !isShword && gameObject.transform.parent != null)
         {
             StartCoroutine(Reaload());
         }
@@ -68,6 +68,7 @@ public class Weapon : MonoBehaviour
         }
 
         ammoInWeapon--;
+        SendInformation();
     }
 
     private void Reloading()
@@ -95,6 +96,12 @@ public class Weapon : MonoBehaviour
         isActive = false;
         Reloading();
         yield return new WaitForSeconds(reload);
+        SendInformation();
         isActive = true;
+    }
+
+    public void SendInformation()
+    {
+        HUD.GetComponent<HeadUpDisplay>().GetAmmoInformation(ammoInWeapon, ammoInInventory);
     }
 }

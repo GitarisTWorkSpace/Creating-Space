@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heal : MonoBehaviour
+public class MediKit : MonoBehaviour
 {
 	public float healthPoint;
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Player")
 		{
-			other.GetComponent<Inventory>().healthPoint += healthPoint;
+			other.GetComponent<Health>().GetHealing(healthPoint);
 			Destroy(gameObject);
 		}
 	}

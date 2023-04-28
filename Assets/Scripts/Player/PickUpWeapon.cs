@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpWeapon : MonoBehaviour
 {
-    public new GameObject camera;
+    public Camera playerCamera;
     public GameObject player;
     public float distance = 15f;
     GameObject currentWeapon;
@@ -14,7 +14,7 @@ public class PickUpWeapon : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, distance))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, distance))
         {
             if(hit.transform.tag == "Weapon")
             {
@@ -23,7 +23,8 @@ public class PickUpWeapon : MonoBehaviour
                 currentWeapon = hit.transform.gameObject;
                 currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
                 currentWeapon.GetComponent<Weapon>().isActive = true;
-               // player.GetComponent<Inventory>().indexOfWepon = currentWeapon.GetComponent<Weapon>().indexWeapon;
+                currentWeapon.GetComponent<Weapon>().SendInformation();
+
                 currentWeapon.transform.parent = transform;
                 currentWeapon.transform.localPosition = new Vector3(0.6f , -1.45f, 2.7f);
                 currentWeapon.transform.localEulerAngles = new Vector3(0, -90f, 0);
@@ -37,7 +38,6 @@ public class PickUpWeapon : MonoBehaviour
         currentWeapon.transform.parent = null;
         currentWeapon.GetComponent<Rigidbody>().isKinematic = false;
         currentWeapon.GetComponent<Weapon>().isActive = false;
-        //player.GetComponent<Inventory>().indexOfWepon = 0;
         canPickUp = false;
         currentWeapon = null;
     }

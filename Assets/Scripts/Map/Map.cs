@@ -12,13 +12,6 @@ public class Map : MonoBehaviour
 	[SerializeField]public int[] maxAmmoInWeapon; // максимальное кол-во патронов в магазине оружия
 	public bool waveIsDone = false; // Закончилась ли волна
 
-	private void Start()
-	{
-		maxAmmoInWeapon = FindObjectOfType<Inventory>().maxCurrentAmmoInWeapon; 
-		// Нахолим объект(player) у него находим скрипт Inventory и
-		// смотрим на поле максимальное кол-во патронов в магазине оружия
-	}
-
 	private void SpawnAmmo(int indexWeapon, int ammonaiton, GameObject spawner)
 	{
 		int ammoInCase = ammonaiton * maxAmmoInWeapon[indexWeapon]; // Сколько будет патронов в Объекте
@@ -35,7 +28,7 @@ public class Map : MonoBehaviour
 	{
 		GameObject healthCase = healing; // Создаем новый объект
 		// Вводим нужные поля
-		healthCase.GetComponent<Heal>().healthPoint = health; // Какое кол-во здоровья прибавиться
+		healthCase.GetComponent<MediKit>().healthPoint = health; // Какое кол-во здоровья прибавиться
 		Instantiate(healthCase, spawner.transform.position, Quaternion.identity); // Создаем
 	}
 
