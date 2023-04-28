@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnZombie : MonoBehaviour
@@ -10,10 +9,11 @@ public class SpawnZombie : MonoBehaviour
 
     public int count = 5; // Кол-во зомби будет спавниться
     public int indexSpawwners = 0; // Индекс спавнера
+    public float spanwTime = 0.2f;
 
     public bool waveIsDone = false; // Волна закончилась
 
-    private void SpawnZ(GameObject spawner,int indexPosiiton)
+    private void SetPosition(GameObject spawner,int indexPosiiton)
     {
 
         Vector3 spawn = new Vector3(spawner.transform.position.x + spawnPosition[indexPosiiton].x, 
@@ -22,15 +22,21 @@ public class SpawnZombie : MonoBehaviour
         Instantiate(zombie, spawn, Quaternion.identity); // спавним зомби
     }
 
+    private IEnumerator Spawner()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            int rnd = Random.Range(0, spawnPosition.Length);
+            SetPosition(zSpawners[indexSpawwners], rnd);
+            yield return new WaitForSeconds(spanwTime);
+        }
+    }
+
     private void Update()
     {
         if (waveIsDone) // Если волна закончилась спавним кол-во зомби
         {
-            for (int i = 0; i < count; i++)
-            {
-                int rnd = Random.Range(0, spawnPosition.Length);
-                SpawnZ(zSpawners[indexSpawwners], rnd);
-            }
+            StartCoroutine(Spawner());
             waveIsDone = false;
         }
     }

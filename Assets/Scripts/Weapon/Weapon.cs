@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] public float reload;
     [Header("Range in units")]
     [SerializeField] public float range;
-    [SerializeField] public int indexWeapon;
+    [SerializeField] public int typeWeapon;
 
     [SerializeField] private int ammoInWeapon;
     [SerializeField] private int maxAmmoInWeapon;
@@ -26,6 +26,7 @@ public class Weapon : MonoBehaviour
     public AudioClip fireSound;
     public AudioSource audioSource;
     public Camera playerCamera;
+    public GameObject HUD;
 
     private float nextFire;
 
@@ -78,11 +79,6 @@ public class Weapon : MonoBehaviour
             return;
 
         if (ammoInInventory >= maxAmmoInWeapon)
-        {
-            ammoInInventory -= maxAmmoInWeapon - ammoInWeapon;
-            ammoInWeapon = maxAmmoInWeapon;
-        }
-        else if (ammoInInventory < maxAmmoInWeapon && (ammoInInventory > (maxAmmoInWeapon - ammoInWeapon)))
         {
             ammoInInventory -= maxAmmoInWeapon - ammoInWeapon;
             ammoInWeapon = maxAmmoInWeapon;
