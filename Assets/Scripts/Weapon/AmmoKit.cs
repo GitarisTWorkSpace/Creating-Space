@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Ammo : MonoBehaviour
+public class AmmoKit : MonoBehaviour
 {
 	public int indexOfWepon;
 	public int ammo;
@@ -11,7 +9,6 @@ public class Ammo : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			//other.GetComponent<Inventory>().currentWeaponAmmo[indexOfWepon] += ammo;
 			Destroy(gameObject);
 		}
 	}

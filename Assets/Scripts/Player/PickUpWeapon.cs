@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUpWeapon : MonoBehaviour
 {
-    public Camera playerCamera;
-    public GameObject player;
-    public float distance = 15f;
-    GameObject currentWeapon;
-    bool canPickUp;
+    [SerializeField] public Camera PlayerCamera;
+    [SerializeField] public GameObject Player;
+
+    [SerializeField] public float distance = 15f;
+
+    private GameObject currentWeapon;
+    private bool canPickUp;
 
     private void PickUp()
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, distance))
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, distance))
         {
             if(hit.transform.tag == "Weapon")
             {

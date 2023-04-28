@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -22,11 +21,11 @@ public class Weapon : MonoBehaviour
     public bool isActive = false;
     public bool isShword;
 
-    public ParticleSystem fireParticle;
-    public AudioClip fireSound;
-    public AudioSource audioSource;
-    public Camera playerCamera;
-    public GameObject HUD;
+    [SerializeField] public ParticleSystem fireParticle;
+    [SerializeField] public AudioClip fireSound;
+    [SerializeField] public AudioSource audioSource;
+    [SerializeField] public Camera playerCamera;
+    [SerializeField] public GameObject HUD;
 
     private float nextFire;
 

@@ -1,34 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float staminaValue = 100;
-    [SerializeField] float maxValueStamina;
-    [SerializeField] float minValueStamina;
-    [SerializeField] float staminaMinus;
-    [SerializeField] float staminaPlus;
+    [SerializeField] private float staminaValue = 100;
 
+    [SerializeField] private float maxValueStamina;
+    [SerializeField] private float minValueStamina;
+    [SerializeField] private float staminaMinus;
+    [SerializeField] private float staminaPlus;
 
     [SerializeField] private float speedMove;
     [SerializeField] private float speedRun;
     [SerializeField] private float speedCurrent;
-    float xMove;
-    float zMove;
-    CharacterController player;
-    Vector3 moveDirection;
+
+    private float xMove;
+    private float zMove;
+
+    private CharacterController Player;
+
+    private Vector3 moveDirection;
 
     private void Start()
     {
-        player = GetComponent<CharacterController>();
+        Player = GetComponent<CharacterController>();
     }
 
     private void MovePlayer()
     {
         xMove = Input.GetAxis("Horizontal");
         zMove = Input.GetAxis("Vertical");
-        if (player.isGrounded)
+        if (Player.isGrounded)
         {
             moveDirection = new Vector3(xMove, 0, zMove);
             moveDirection = transform.TransformDirection(moveDirection);
@@ -46,7 +47,7 @@ public class PlayerMove : MonoBehaviour
             staminaValue += staminaPlus * Time.deltaTime;
         }
 
-        player.Move(moveDirection * speedCurrent);
+        Player.Move(moveDirection * speedCurrent);
     }
 
     private void Stamina()

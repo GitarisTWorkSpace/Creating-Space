@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class HeadUpDisplay : MonoBehaviour
 {
-    public GameObject PausePanel;
+    [SerializeField] public TMP_Text HealthText; // UI текст со значением кол-во здоровья
+    [SerializeField] public Slider HealthSlider; // UI Слайдер для показания здоровья игрока
+
+    [SerializeField] public TMP_Text AmmoInInventory; // UI текст со значением кол-во патронов у игрока
+    [SerializeField] public TMP_Text AmmoInWeapon; // UI текст со значением кол-во патронов в обойме
+
+    [SerializeField] public GameObject PausePanel;
     private bool pauseIsActive = false;
-
-    public TMP_Text HealthText; // UI текст со значением кол-во здоровья
-    public TMP_Text AmmoInInventory; // UI текст со значением кол-во патронов у игрока
-    public TMP_Text AmmoInWeapon; // UI текст со значением кол-во патронов в обойме
-
-    public Slider HealthSlider; // UI Слайдер для показания здоровья игрока
 
     public void ToStart()
     {

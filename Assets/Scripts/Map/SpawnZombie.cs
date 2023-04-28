@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class SpawnZombie : MonoBehaviour
 {
-    public GameObject zombie; // Объект Зомби
-    public GameObject[] zSpawners; // Спавнера
+    [SerializeField] public GameObject Zombie; // Объект Зомби
+    [SerializeField] public GameObject[] ZombieSpawners; // Спавнера
+
     [SerializeField] public Vector3[] spawnPosition;
 
     public int count = 5; // Кол-во зомби будет спавниться
     public int indexSpawwners = 0; // Индекс спавнера
     public float spanwTime = 0.2f;
 
-    public bool waveIsDone = false; // Волна закончилась
+    public bool waveIsStart = false; // Волна закончилась
 
     private void SetPosition(GameObject spawner,int indexPosiiton)
     {
@@ -19,7 +20,7 @@ public class SpawnZombie : MonoBehaviour
         Vector3 spawn = new Vector3(spawner.transform.position.x + spawnPosition[indexPosiiton].x, 
                                     spawner.transform.position.y, 
                                     spawner.transform.position.z + spawnPosition[indexPosiiton].z);
-        Instantiate(zombie, spawn, Quaternion.identity); // спавним зомби
+        Instantiate(Zombie, spawn, Quaternion.identity); // спавним зомби
     }
 
     private IEnumerator Spawner()
@@ -27,17 +28,17 @@ public class SpawnZombie : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int rnd = Random.Range(0, spawnPosition.Length);
-            SetPosition(zSpawners[indexSpawwners], rnd);
+            SetPosition(ZombieSpawners[indexSpawwners], rnd);
             yield return new WaitForSeconds(spanwTime);
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (waveIsDone) // Если волна закончилась спавним кол-во зомби
+        if (waveIsStart) // Если волна закончилась спавним кол-во зомби
         {
             StartCoroutine(Spawner());
-            waveIsDone = false;
+            waveIsStart = false;
         }
     }
 }

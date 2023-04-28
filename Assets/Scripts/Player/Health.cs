@@ -1,12 +1,12 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] public float healthPoint = 100f; // Кол-во здаровья игрока 
+    [SerializeField] public GameObject HUD;
+
+    public float healthPoint = 100f; // Кол-во здаровья игрока 
+
     [SerializeField] private float maxHealthPoint = 100f; // Максимальное здоровье игрока
-    public GameObject HUD;
 
     private void Start()
     {
