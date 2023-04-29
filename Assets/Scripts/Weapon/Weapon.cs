@@ -99,6 +99,11 @@ public class Weapon : MonoBehaviour
         isActive = true;
     }
 
+    public void GetAmmo(int ammo)
+    {
+        ammoInInventory += ammo;
+    }
+
     public void SendInformation()
     {
         HUD.GetComponent<HeadUpDisplay>().GetAmmoInformation(ammoInWeapon, ammoInInventory);

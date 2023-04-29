@@ -2,35 +2,33 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-	[SerializeField] public GameObject Ammo; // Объект патроны
-	[SerializeField] public GameObject Player; // Игрок
-	[SerializeField] public GameObject MediKit; // Объект аптечки
+	[SerializeField] public GameObject Ammo; 
+	[SerializeField] public GameObject Player; 
+	[SerializeField] public GameObject MediKit; 
 
-	[SerializeField] public GameObject[] MediKitSpawners; // Спавнера аптечек
-	[SerializeField] public GameObject[] AmmoSpawners; // Спавнера патронов
+	[SerializeField] public GameObject[] MediKitSpawners; 
+	[SerializeField] public GameObject[] AmmoSpawners; 
 
-	[SerializeField]public int[] maxAmmoInWeapon; // максимальное кол-во патронов в магазине оружия
+	[SerializeField]public int[] maxAmmoInWeapon; 
 
-	public bool waveIsDone = false; // Закончилась ли волна
+	public bool waveIsDone = false; 
 
-	private void SpawnAmmo(int indexWeapon, int ammonaiton, GameObject spawner)
+	private void SpawnAmmo(int typeWeapon, int ammonaiton, GameObject spawner)
 	{
-		int ammoInCase = ammonaiton * maxAmmoInWeapon[indexWeapon]; // Сколько будет патронов в Объекте
-		GameObject ammoCase = Ammo; // Создаем новый объект 
+		int ammoInCase = ammonaiton * maxAmmoInWeapon[typeWeapon]; 
+
+		GameObject ammoCase = Ammo; 
+		ammoCase.GetComponent<AmmoKit>().typeWeapon = typeWeapon; 
+		ammoCase.GetComponent<AmmoKit>().ammo = ammoInCase; 
 		
-		// Вводим нужные поля
-		ammoCase.GetComponent<AmmoKit>().indexOfWepon = indexWeapon; // Индекс оружия
-		ammoCase.GetComponent<AmmoKit>().ammo = ammoInCase; // Кол-во патронов 
-		
-		Instantiate(ammoCase, spawner.transform.position, Quaternion.identity); // Создаем
+		Instantiate(ammoCase, spawner.transform.position, Quaternion.identity); 
 	}
 
-	private void SpawnHealing(float health, GameObject spawner)
+	private void SpawnHealing(int indexMediKit, GameObject spawner)
 	{
-		GameObject healthCase = MediKit; // Создаем новый объект
-		// Вводим нужные поля
-		healthCase.GetComponent<MediKit>().healthPoint = health; // Какое кол-во здоровья прибавиться
-		Instantiate(healthCase, spawner.transform.position, Quaternion.identity); // Создаем
+		GameObject healthCase = MediKit;
+		healthCase.GetComponent<MediKit>().indexMediKit = indexMediKit; 
+		Instantiate(healthCase, spawner.transform.position, Quaternion.identity); 
 	}
 
     private void FixedUpdate()
@@ -39,8 +37,8 @@ public class ItemSpawner : MonoBehaviour
         {
 			for (int i = 0; i < AmmoSpawners.Length; i++) // Спавним объекты
             {
-				SpawnAmmo(Random.Range(1, 3), Random.Range(1, 5), AmmoSpawners[i]);
-				SpawnHealing(Random.Range(1, 5) * 10, MediKitSpawners[i]);
+				SpawnAmmo(Random.Range(1, 3), Random.Range(1, 4), AmmoSpawners[i]);
+				SpawnHealing(Random.Range(0, 3), MediKitSpawners[i]);
 			}
 			waveIsDone = false;
         }
