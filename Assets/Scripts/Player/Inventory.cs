@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public GameObject[] WeaponInInventory;
-    [SerializeField] public int[] countMediKitIninvenory;
+    [SerializeField] public GameObject[] WeaponInInventory = new GameObject[3];
+    [SerializeField] public int[] countMediKitIninvenory = new int[3];
     [SerializeField] public int activMediKit;
 
     public void SetAmmoInWeapon(int typeWeapon, int ammo)
@@ -25,9 +25,15 @@ public class Inventory : MonoBehaviour
         {
             switch (index)
             {
-                case 0: return 30f;
-                case 1: return 50f;
-                case 2: return 100f;
+                case 0:
+                    countMediKitIninvenory[index]--;
+                    return 30f;
+                case 1:
+                    countMediKitIninvenory[index]--;
+                    return 50f;
+                case 2: 
+                    countMediKitIninvenory[index]--;
+                    return 100f;
                 default: return 0;
             }
         }
@@ -36,14 +42,18 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Tab) && countMediKitIninvenory.Length <= activMediKit)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             activMediKit++;
+            if(activMediKit >= countMediKitIninvenory.Length)
+            {
+                activMediKit = 0;
+            }
         }
-        else
-        {
-            activMediKit = 0;
-        }
+        //else if (Input.GetKeyDown(KeyCode.Tab) && countMediKitIninvenory.Length > activMediKit)
+        //{
+        //    activMediKit = 0;
+        //}
 
         if (Input.GetKeyDown(KeyCode.Q))
         {

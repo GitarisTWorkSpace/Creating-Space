@@ -22,16 +22,12 @@ public class Health : MonoBehaviour
     public void GetHealing(float health)
     {
         healthPoint += health;
+        if (healthPoint > maxHealthPoint) healthPoint = maxHealthPoint;
         SendInformation();
     }
 
     private void SendInformation()
     {
         HUD.GetComponent<HeadUpDisplay>().GetHealthInformation(healthPoint);
-    }
-
-    private void Update()
-    {
-        if(healthPoint > maxHealthPoint) healthPoint = maxHealthPoint;
     }
 }

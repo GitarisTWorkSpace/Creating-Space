@@ -9,7 +9,7 @@ public class AmmoKit : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			
+			other.GetComponent<Inventory>().SetAmmoInWeapon(typeWeapon, ammo);
 			Destroy(gameObject);
 		}
 	}
