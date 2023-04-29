@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    
+    #region Характеристики
     [SerializeField] public float damage;
     [Header("Fire Rate in 0.second")]
     [SerializeField] public float fireRate;
@@ -12,20 +12,24 @@ public class Weapon : MonoBehaviour
     [Header("Range in units")]
     [SerializeField] public float range;
     [SerializeField] public int typeWeapon;
-
-    [SerializeField] private int ammoInWeapon;
-    [SerializeField] private int maxAmmoInWeapon;
-    [SerializeField] private int ammoInInventory;
-    [SerializeField] private int maxAmmoInInventory;
-
     public bool isActive = false;
     public bool isShword;
+    #endregion
 
+    #region Объекты
     [SerializeField] public ParticleSystem fireParticle;
     [SerializeField] public AudioClip fireSound;
     [SerializeField] public AudioSource audioSource;
     [SerializeField] public Camera playerCamera;
     [SerializeField] public GameObject HUD;
+    #endregion
+
+    #region Патроны
+    [SerializeField] private int ammoInWeapon;
+    [SerializeField] private int maxAmmoInWeapon;
+    [SerializeField] private int ammoInInventory;
+    [SerializeField] private int maxAmmoInInventory;
+    #endregion
 
     private float nextFire;
 
@@ -49,7 +53,7 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && !isShword && gameObject.transform.parent != null)
         {
-            StartCoroutine(Reaload());
+            StartCoroutine(RealoadWeapon());
         }
     }
 
@@ -90,7 +94,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private IEnumerator Reaload()
+    private IEnumerator RealoadWeapon()
     {
         isActive = false;
         Reloading();
@@ -102,6 +106,10 @@ public class Weapon : MonoBehaviour
     public void GetAmmo(int ammo)
     {
         ammoInInventory += ammo;
+
+        if (maxAmmoInInventory < ammoInInventory)
+            ammoInInventory = maxAmmoInInventory;
+        SendInformation();
     }
 
     public void SendInformation()

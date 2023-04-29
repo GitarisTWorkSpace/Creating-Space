@@ -356,8 +356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f8a397479d43d54ca10d5a3d9ff94ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Zombie: {fileID: 0}
-  ZombieSpawners: []
+  Zombie: {fileID: 7256468296710294911, guid: 39c27e3cc90c4e44bb0a9f2ffc6496ce, type: 3}
+  ZombieSpawners:
+  - {fileID: 1188244773}
+  - {fileID: 401649327}
+  - {fileID: 691158177}
+  - {fileID: 327680015}
   spawnPosition:
   - {x: -3, y: 0, z: 3}
   - {x: -2, y: 0, z: 3}
@@ -493,11 +497,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147ae9d14eab4ba47b0d9bf1aafc4978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ammo: {fileID: 0}
-  Player: {fileID: 0}
-  MediKit: {fileID: 0}
-  MediKitSpawners: []
-  AmmoSpawners: []
+  Ammo: {fileID: 2014571071197544155, guid: a8899406668dc354fab47f459c83f673, type: 3}
+  Player: {fileID: 8963535476310382945, guid: 1ad375bcceaf49c498caacca484be978, type: 3}
+  MediKit: {fileID: 8357637445365198244, guid: 25939c838aa735f4e8814b8c5d09fc92, type: 3}
+  MediKitSpawners:
+  - {fileID: 75015324}
+  - {fileID: 1155792518}
+  - {fileID: 1262109160}
+  AmmoSpawners:
+  - {fileID: 998494750}
+  - {fileID: 500466639}
+  - {fileID: 898714303}
   maxAmmoInWeapon: 00000000070000001e000000
   waveIsDone: 0
 --- !u!1001 &882853530

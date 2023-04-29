@@ -163,7 +163,7 @@ MonoBehaviour:
   fireRate: 1.5
   reload: 3
   range: 45
-  indexWeapon: 2
+  typeWeapon: 1
   ammoInWeapon: 7
   maxAmmoInWeapon: 7
   ammoInInventory: 14
@@ -174,3 +174,4 @@ MonoBehaviour:
   fireSound: {fileID: 0}
   audioSource: {fileID: 0}
   playerCamera: {fileID: 0}
+  HUD: {fileID: 0}

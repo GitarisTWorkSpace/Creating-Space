@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7634820865553751054}
   - component: {fileID: 7634820865553751055}
   m_Layer: 6
-  m_Name: Automate
+  m_Name: automate
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   fireRate: 0.1
   reload: 5
   range: 75
-  typeWeapon: 0
+  typeWeapon: 2
   ammoInWeapon: 30
   maxAmmoInWeapon: 30
   ammoInInventory: 60

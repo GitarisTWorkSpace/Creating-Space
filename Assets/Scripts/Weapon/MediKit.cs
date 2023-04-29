@@ -7,7 +7,7 @@ public class MediKit : MonoBehaviour
 	{
 		if (other.tag == "Player")
 		{
-			//other.GetComponent<Health>().GetHealing(indexMediKit);
+            other.GetComponent<Inventory>().countMediKitIninvenory[indexMediKit] += 1;
 			Destroy(gameObject);
 		}
 	}
