@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class SpawnZombie : MonoBehaviour
 {
-    [SerializeField] public GameObject Zombie; // Объект Зомби
-    [SerializeField] public GameObject[] ZombieSpawners; // Спавнера
+    [SerializeField] public GameObject Zombie; 
+    [SerializeField] public GameObject[] ZombieSpawners; 
 
     [SerializeField] public Vector3[] spawnPosition;
 
-    public int count = 5; // Кол-во зомби будет спавниться
-    public int indexSpawwners = 0; // Индекс спавнера
+    //public int count = 5; 
+    //public int indexSpawwners = 0; 
     public float spanwTime = 0.2f;
-
-    public bool waveIsStart = false; // Волна закончилась
 
     private void SetPosition(GameObject spawner,int indexPosiiton)
     {
@@ -20,25 +18,26 @@ public class SpawnZombie : MonoBehaviour
         Vector3 spawn = new Vector3(spawner.transform.position.x + spawnPosition[indexPosiiton].x, 
                                     spawner.transform.position.y, 
                                     spawner.transform.position.z + spawnPosition[indexPosiiton].z);
-        Instantiate(Zombie, spawn, Quaternion.identity); // спавним зомби
+        Instantiate(Zombie, spawn, Quaternion.identity); 
     }
 
-    private IEnumerator Spawner()
+    public IEnumerator Spawner(int count, int indexSpawner)
     {
         for (int i = 0; i < count; i++)
         {
             int rnd = Random.Range(0, spawnPosition.Length);
-            SetPosition(ZombieSpawners[indexSpawwners], rnd);
+            SetPosition(ZombieSpawners[indexSpawner], rnd);
             yield return new WaitForSeconds(spanwTime);
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (waveIsStart) // Если волна закончилась спавним кол-во зомби
-        {
-            StartCoroutine(Spawner());
-            waveIsStart = false;
-        }
-    }
+    
+    //private void FixedUpdate()
+    //{
+    //    if (waveIsStart) 
+    //    {
+    //        StartCoroutine(Spawner(count, indexSpawwners));
+    //        waveIsStart = false;
+    //    }
+    //}
 }
