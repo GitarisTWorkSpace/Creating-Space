@@ -11,30 +11,23 @@ public class Note : MonoBehaviour
     public GameObject notice;
     public GameObject noteUI;
     public Text text;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerStay(Collider other)
     {
+
+        Debug.Log("Записка");
         text.text = noteTextstr;
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             noteUI.SetActive(true);
         }
-        if (Input.GetKey(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             noteUI.SetActive(false);
         }
         notice.SetActive(true);
     }
+
     private void OnTriggerExit(Collider other)
     {
         notice.SetActive(false);
