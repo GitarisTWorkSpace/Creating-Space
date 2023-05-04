@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7634820865553751052
+--- !u!1 &8357301273878719879
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,81 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7634820865553751050}
-  - component: {fileID: 7634820865553751051}
-  - component: {fileID: 7634820865553751048}
-  - component: {fileID: 7634820865553751049}
-  - component: {fileID: 7634820865553751054}
-  - component: {fileID: 7634820865553751055}
-  m_Layer: 6
-  m_Name: automate
-  m_TagString: Weapon
+  - component: {fileID: 8357301273878719878}
+  m_Layer: 0
+  m_Name: SpawnBullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7634820865553751050
+--- !u!4 &8357301273878719878
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634820865553751052}
+  m_GameObject: {fileID: 8357301273878719879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.69, y: 5.49, z: -1.92}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8357301274034142824}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8357301274034142830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8357301274034142824}
+  - component: {fileID: 8357301274034142825}
+  - component: {fileID: 8357301274034142826}
+  - component: {fileID: 8357301274034142827}
+  - component: {fileID: 8357301274034142828}
+  - component: {fileID: 8357301274034142829}
+  m_Layer: 6
+  m_Name: Automate
+  m_TagString: Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8357301274034142824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8357301274034142830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.29, y: 4.52, z: 5.7}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7634820865684590564}
+  - {fileID: 8357301273878719878}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7634820865553751051
+--- !u!33 &8357301274034142825
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634820865553751052}
+  m_GameObject: {fileID: 8357301274034142830}
   m_Mesh: {fileID: -2432090755550338912, guid: ac93305a9d24ba84f885a65abea5ee84, type: 3}
---- !u!23 &7634820865553751048
+--- !u!23 &8357301274034142826
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634820865553751052}
+  m_GameObject: {fileID: 8357301274034142830}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,26 +118,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7634820865553751049
+--- !u!65 &8357301274034142827
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634820865553751052}
+  m_GameObject: {fileID: 8357301274034142830}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 12, y: 5.05, z: 2}
   m_Center: {x: -6.01, y: 4.14, z: -1.95}
---- !u!54 &7634820865553751054
+--- !u!54 &8357301274034142828
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634820865553751052}
+  m_GameObject: {fileID: 8357301274034142830}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -116,13 +147,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7634820865553751055
+--- !u!114 &8357301274034142829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634820865553751052}
+  m_GameObject: {fileID: 8357301274034142830}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67ed1b57c8ae5c341aeb4cf27b34f72b, type: 3}
@@ -133,10 +164,6 @@ MonoBehaviour:
   reload: 5
   range: 75
   typeWeapon: 2
-  ammoInWeapon: 30
-  maxAmmoInWeapon: 30
-  ammoInInventory: 60
-  maxAmmoInInventory: 300
   isActive: 0
   isShword: 0
   fireParticle: {fileID: 0}
@@ -144,34 +171,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   playerCamera: {fileID: 0}
   HUD: {fileID: 0}
---- !u!1 &7634820865684590565
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7634820865684590564}
-  m_Layer: 0
-  m_Name: SpawnBullet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7634820865684590564
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634820865684590565}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.69, y: 5.49, z: -1.92}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7634820865553751050}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  ammoInWeapon: 30
+  maxAmmoInWeapon: 30
+  ammoInInventory: 60
+  maxAmmoInInventory: 300

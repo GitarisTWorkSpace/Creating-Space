@@ -143,6 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1658526232315419735}
   - component: {fileID: 4680632325993694349}
+  - component: {fileID: 1807148406075021952}
   m_Layer: 0
   m_Name: DamageCube
   m_TagString: Untagged
@@ -178,3 +179,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1807148406075021952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358765689435479418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1431ed18d24df146a780a15725a7daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

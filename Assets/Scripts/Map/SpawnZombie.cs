@@ -25,7 +25,7 @@ public class SpawnZombie : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            int rnd = Random.Range(0, spawnPosition.Length);
+            int rnd = Random.Range(0, spawnPosition.Length + 1);
             SetPosition(ZombieSpawners[indexSpawner], rnd);
             yield return new WaitForSeconds(spanwTime);
         }

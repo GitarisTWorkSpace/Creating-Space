@@ -4,7 +4,6 @@ public class PlayerMouseMove : MonoBehaviour
 {
     [SerializeField] public Camera PlayerCamera;
     [SerializeField] public GameObject Player;
-    [SerializeField] public GameObject HandWeapon;
 
     [SerializeField] public float sensivity;
     [SerializeField] private float smoothTime;
@@ -29,7 +28,6 @@ public class PlayerMouseMove : MonoBehaviour
 
         PlayerCamera.transform.rotation = Quaternion.Euler(-xRotCurrent, yRotCurrent, 0);
         Player.transform.rotation = Quaternion.Euler(0, yRotCurrent, 0);
-        HandWeapon.transform.rotation = Quaternion.Euler(-xRotCurrent, yRotCurrent, 0);
     }
 
     private void FixedUpdate()

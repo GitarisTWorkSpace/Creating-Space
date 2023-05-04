@@ -35,7 +35,8 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        playerCamera = FindAnyObjectByType<Camera>();
+        playerCamera = FindObjectOfType<Camera>();
+        HUD = FindObjectOfType<HeadUpDisplay>().gameObject;
     }
 
     private void Update()

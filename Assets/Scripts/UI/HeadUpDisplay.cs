@@ -8,8 +8,8 @@ public class HeadUpDisplay : MonoBehaviour
     [SerializeField] public TMP_Text HealthText; // UI текст со значением кол-во здоровья
     [SerializeField] public Slider HealthSlider; // UI Слайдер для показания здоровья игрока
 
-    [SerializeField] public TMP_Text AmmoInInventory; // UI текст со значением кол-во патронов у игрока
     [SerializeField] public TMP_Text AmmoInWeapon; // UI текст со значением кол-во патронов в обойме
+    [SerializeField] public TMP_Text AmmoInInventory; // UI текст со значением кол-во патронов у игрока
 
     [SerializeField] public GameObject PausePanel;
     private bool pauseIsActive = false;
