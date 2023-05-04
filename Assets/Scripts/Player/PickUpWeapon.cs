@@ -1,50 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PickUpWeapon : MonoBehaviour
 {
-    public Camera camera;
-    public GameObject player;
-    public float distance = 15f;
-    GameObject currentWeapon;
-    bool canPickUp;
+    [SerializeField] public Camera PlayerCamera;
+    [SerializeField] public GameObject Player;
+
+    [SerializeField] public float distance = 15f;
+
+    private GameObject currentWeapon;
 
     private void PickUp()
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, distance))
+        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, distance))
         {
             if(hit.transform.tag == "Weapon")
             {
-                if (canPickUp) Drop();
-
                 currentWeapon = hit.transform.gameObject;
-                currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
-                currentWeapon.GetComponent<Weapon>().weaponInHand = true;
-                player.GetComponent<Inventory>().indexOfWepon = currentWeapon.GetComponent<Weapon>().indexWeapon;
-                currentWeapon.transform.parent = transform;
-                currentWeapon.transform.localPosition = new Vector3(0.6f , -1.45f, 2.7f);
-                currentWeapon.transform.localEulerAngles = new Vector3(0, -90f, 0);
-                canPickUp = true;
+                SetProperty(currentWeapon);
+                
+                SetPosition(currentWeapon);
+
+                SetInInvenetory(currentWeapon);
             }
         }
     }
 
-    private void Drop()
+    private void SetProperty(GameObject currentWeapon)
     {
-        currentWeapon.transform.parent = null;
-        currentWeapon.GetComponent<Rigidbody>().isKinematic = false;
-        currentWeapon.GetComponent<Weapon>().weaponInHand = false;
-        player.GetComponent<Inventory>().indexOfWepon = 0;
-        canPickUp = false;
-        currentWeapon = null;
+        currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
+        currentWeapon.GetComponent<Weapon>().isActive = true;
+        currentWeapon.GetComponent<Weapon>().SendInformation();
+    }
+
+    private void SetInInvenetory(GameObject currentWeapon)
+    {
+        Debug.Log(transform.childCount);
+        Player.GetComponent<Inventory>().WeaponInInventory[transform.childCount - 1] = currentWeapon;
+        Player.GetComponent<Inventory>().SetWeapon(transform.childCount - 1);
+    }
+
+    private void SetPosition(GameObject currentWeapon)
+    {
+        currentWeapon.transform.parent = transform;
+        currentWeapon.transform.localPosition = new Vector3(0.6f, -1.45f, 2.7f);
+        currentWeapon.transform.localEulerAngles = new Vector3(0, -90f, 0);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) PickUp();
-        if (Input.GetKeyDown(KeyCode.Q)) Drop();
     }
 }

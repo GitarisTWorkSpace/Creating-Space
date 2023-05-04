@@ -1,11 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class HeadUpDisplay : MonoBehaviour
 {
-    public GameObject PausePanel;
+    [SerializeField] public TMP_Text HealthText; // UI текст со значением кол-во здоровья
+    [SerializeField] public Slider HealthSlider; // UI Слайдер для показания здоровья игрока
+
+    [SerializeField] public TMP_Text AmmoInInventory; // UI текст со значением кол-во патронов у игрока
+    [SerializeField] public TMP_Text AmmoInWeapon; // UI текст со значением кол-во патронов в обойме
+
+    [SerializeField] public GameObject PausePanel;
     private bool pauseIsActive = false;
 
     public void ToStart()
@@ -21,14 +27,7 @@ public class HeadUpDisplay : MonoBehaviour
             pauseIsActive = true;
         }
 
-        if (pauseIsActive)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
+        Time.timeScale = pauseIsActive ? 0f : 1f;
     }
 
     public void IsPaused(bool value)
@@ -36,8 +35,20 @@ public class HeadUpDisplay : MonoBehaviour
         pauseIsActive = value;
     }
 
+    public void GetAmmoInformation(int ammoInWeapon, int ammoInInventory)
+    {
+        AmmoInInventory.text = ammoInInventory.ToString();
+        AmmoInWeapon.text = ammoInWeapon.ToString();
+    }
+
+    public void GetHealthInformation(float healthPoint)
+    {
+        HealthText.text = Mathf.Round(healthPoint).ToString();
+        HealthSlider.value = healthPoint;
+    }
+
     private void Update()
     {
-        ActivePause();
+        ActivePause();    
     }
 }

@@ -1,41 +1,122 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public float healthPoint = 100f; // Кол-во здаровья игрока 
-    [SerializeField] private float maxHealthPoint = 100f; // Максимальное здоровье игрока
-    [SerializeField] public int[] currentWeaponAmmo = new int[4]; // Кол-во патронов у игрока 
-    [SerializeField] public int[] maxCurrentWeaponAmmo = {0, 70, 300, 50}; // максимально возможное кол-во патронов у игрока
-    [SerializeField] public int[] currentAmmoInWeapon = new int[4]; // Кол-во патронов в обойме у игрока
-    [SerializeField] public int[] maxCurrentAmmoInWeapon = {0, 7, 30, 5}; // Максимально возможное кол-во патронов в обойме 
+    [SerializeField] public GameObject[] WeaponInInventory = new GameObject[3];
+    [SerializeField] public GameObject Hand;
+    [SerializeField] public int[] countMediKitIninvenory = new int[3];
+    [SerializeField] public int activMediKit;
+    [SerializeField] private int activeWeapon = 0;
 
-    public TMP_Text HealthText; // UI текст со значением кол-во здоровья
-    public TMP_Text Ammo; // UI текст со значением кол-во патронов у игрока
-    public TMP_Text InWeapon; // UI текст со значением кол-во патронов в обойме
+    public void SetAmmoInWeapon(int typeWeapon, int ammo)
+    {
+        foreach(var weapon in WeaponInInventory)
+        {
+            if (weapon == null) continue;
 
-    public Slider HealthSlider; // UI Слайдер для показания здоровья игрока
+            if (weapon.GetComponent<Weapon>().typeWeapon == typeWeapon)
+                weapon.GetComponent<Weapon>().GetAmmo(ammo);
+        }
+    }
 
-    [SerializeField] public int indexOfWepon = 0; // Индекс оружия в руках игрока.
+    public void SetWeapon(int index)
+    {
+        Hand.transform.GetChild(index).gameObject.SetActive(true);
+        Hand.transform.GetChild(index).gameObject.GetComponent<Weapon>().isActive = true;
+        Hand.transform.GetChild(index).gameObject.GetComponent<Weapon>().SendInformation();
+        for (int i = 0; i < Hand.transform.childCount; i++)
+        {
+            if (i != index)
+            {
+                Hand.transform.GetChild(i).gameObject.SetActive(false);
+                Hand.transform.GetChild(i).gameObject.GetComponent<Weapon>().isActive = false;
+            }
+        }
+    }
+
+    private void SwichWeapon()
+    {
+        int countCild = Hand.transform.childCount;
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) && countCild >= 0)
+            SetWeapon(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2) && countCild >= 1)
+            SetWeapon(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3) && countCild >= 2)
+            SetWeapon(2);
+        if (Input.GetKeyDown(KeyCode.Alpha4) && countCild >= 3)
+            SetWeapon(3);
+        if (Input.GetKeyDown(KeyCode.Alpha5) && countCild >= 4)
+            SetWeapon(4);
+        if (Input.GetKeyDown(KeyCode.Alpha6) && countCild >= 5)
+            SetWeapon(5);
+        if (Input.GetKeyDown(KeyCode.Alpha7) && countCild >= 6)
+            SetWeapon(6);
+        if (Input.GetKeyDown(KeyCode.Alpha8) && countCild >= 7)
+            SetWeapon(7);
+        if (Input.GetKeyDown(KeyCode.Alpha9) && countCild >= 8)
+            SetWeapon(8);
+
+        if(Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            if(activeWeapon >= Hand.transform.childCount)
+                activeWeapon = 0;
+            else 
+                activeWeapon++;
+
+            SetWeapon(activeWeapon);
+        }
+
+        if(Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            if (activeWeapon <= 0)
+                activeWeapon = Hand.transform.childCount;
+            else
+                activeWeapon--;
+
+            SetWeapon(activeWeapon);
+        }
+
+
+    }
+
+    private float Medikit(int index)
+    {
+        if (countMediKitIninvenory[index] > 0)
+        {
+            switch (index)
+            {
+                case 0:
+                    countMediKitIninvenory[index]--;
+                    return 30f;
+                case 1:
+                    countMediKitIninvenory[index]--;
+                    return 50f;
+                case 2: 
+                    countMediKitIninvenory[index]--;
+                    return 100f;
+                default: return 0;
+            }
+        }
+        return 0;
+    }
 
     private void Update()
     {
-        if(healthPoint > maxHealthPoint) healthPoint = maxHealthPoint;
-        
-        for(int i = 0; i < 4; i++)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if(maxCurrentWeaponAmmo[i] < currentWeaponAmmo[i])
-                currentWeaponAmmo[i] = maxCurrentWeaponAmmo[i];
-
-            if(maxCurrentAmmoInWeapon[i] < currentAmmoInWeapon[i])
-                currentAmmoInWeapon[i] = maxCurrentAmmoInWeapon[i];
+            activMediKit++;
+            if(activMediKit >= countMediKitIninvenory.Length)
+            {
+                activMediKit = 0;
+            }
         }
 
-        HealthText.text = Mathf.Round(healthPoint).ToString();
-        HealthSlider.value = healthPoint;
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            gameObject.GetComponent<Health>().GetHealing(Medikit(activMediKit));
+        }
 
-        Ammo.text = currentWeaponAmmo[indexOfWepon].ToString();
-        InWeapon.text = currentAmmoInWeapon[indexOfWepon].ToString();
+        SwichWeapon();
     }
 }

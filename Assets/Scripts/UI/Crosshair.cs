@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
 {
-	public RectTransform crosshair;
+	[SerializeField] public RectTransform crosshair;
+
 	[SerializeField] private float sizeState;
 	[SerializeField] private float sizeMove;
 	[SerializeField] private float sizeCurrent;
-	[SerializeField] public float sizeSpeed;
+	[SerializeField] private float sizeSpeed;
 
 	bool isMoving
 	{

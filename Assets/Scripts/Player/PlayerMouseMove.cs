@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMouseMove : MonoBehaviour
 {
-    [SerializeField] private float sensivity;
+    [SerializeField] public Camera PlayerCamera;
+    [SerializeField] public GameObject Player;
+    [SerializeField] public GameObject HandWeapon;
+
+    [SerializeField] public float sensivity;
     [SerializeField] private float smoothTime;
-    float xRotation;
-    float yRotation;
-    float xRotCurrent;
-    float yRotCurrent;
-    public Camera playerCamera;
-    public GameObject player;
-    public GameObject handWeapon;
+
+    private float xRotation;
+    private float yRotation;
+    private float xRotCurrent;
+    private float yRotCurrent;
 
     float currentVelosityX;
     float currentVelosityY;
@@ -27,9 +27,9 @@ public class PlayerMouseMove : MonoBehaviour
         xRotCurrent = Mathf.SmoothDamp(xRotCurrent, xRotation, ref currentVelosityX, smoothTime);
         yRotCurrent = Mathf.SmoothDamp(yRotCurrent, yRotation, ref currentVelosityY, smoothTime);
 
-        playerCamera.transform.rotation = Quaternion.Euler(-xRotCurrent, yRotCurrent, 0);
-        player.transform.rotation = Quaternion.Euler(0, yRotCurrent, 0);
-        handWeapon.transform.rotation = Quaternion.Euler(-xRotCurrent, yRotCurrent, 0);
+        PlayerCamera.transform.rotation = Quaternion.Euler(-xRotCurrent, yRotCurrent, 0);
+        Player.transform.rotation = Quaternion.Euler(0, yRotCurrent, 0);
+        HandWeapon.transform.rotation = Quaternion.Euler(-xRotCurrent, yRotCurrent, 0);
     }
 
     private void FixedUpdate()

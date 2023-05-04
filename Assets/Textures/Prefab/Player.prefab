@@ -1599,8 +1599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2312879e8c708846a80463b533506c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 8963535476310382950}
-  player: {fileID: 8963535476310382945}
+  PlayerCamera: {fileID: 8963535476310382950}
+  Player: {fileID: 8963535476310382945}
   distance: 15
 --- !u!1 &8963535474976277498
 GameObject:
@@ -8403,6 +8403,7 @@ GameObject:
   - component: {fileID: 8963535476310382941}
   - component: {fileID: 8963535476310382946}
   - component: {fileID: 8963535476310382947}
+  - component: {fileID: 2378814672922711204}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -8478,11 +8479,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cde23999016884faa51a9ff85d765d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerCamera: {fileID: 8963535476310382950}
+  Player: {fileID: 8963535476310382945}
+  HandWeapon: {fileID: 8963535474961506821}
   sensivity: 3
   smoothTime: 0.05
-  playerCamera: {fileID: 8963535476310382950}
-  player: {fileID: 8963535476310382945}
-  handWeapon: {fileID: 8963535474961506821}
 --- !u!114 &8963535476310382947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8495,17 +8496,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb5e0348f9dac942afda665930b5691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 100
+  HUD: {fileID: 8963535476742320771}
+  healthPoint: 30
   maxHealthPoint: 100
-  currentWeaponAmmo: 000000000e0000003c00000000000000
-  maxCurrentWeaponAmmo: 00000000460000002c01000032000000
-  currentAmmoInWeapon: 00000000070000001e00000000000000
-  maxCurrentAmmoInWeapon: 00000000070000001e00000005000000
-  HealthText: {fileID: 8963535475126401008}
-  Ammo: {fileID: 8963535475439787898}
-  InWeapon: {fileID: 8963535474877756784}
-  HealthSlider: {fileID: 8963535475901897255}
-  indexOfWepon: 0
+--- !u!114 &2378814672922711204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8963535476310382945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e9178785303384e8ce8938c67692e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponInInventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Hand: {fileID: 8963535474961506821}
+  countMediKitIninvenory: 000000000000000000000000
+  activMediKit: 0
 --- !u!1 &8963535476333221935
 GameObject:
   m_ObjectHideFlags: 0
@@ -10912,6 +10924,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4ef3c7f732fe1489e603e1c9fd7d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthText: {fileID: 8963535475126401008}
+  HealthSlider: {fileID: 8963535475901897255}
+  AmmoInInventory: {fileID: 8963535475439787898}
+  AmmoInWeapon: {fileID: 8963535474877756784}
   PausePanel: {fileID: 8963535476894768579}
 --- !u!1 &8963535476746640827
 GameObject:

@@ -1,32 +1,47 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnZombie : MonoBehaviour
 {
-    public GameObject zombie; // Объект Зомби
-    public GameObject[] zSpawners; // Спавнера
+    [SerializeField] public GameObject Zombie; 
+    [SerializeField] public GameObject[] ZombieSpawners; 
 
-    public int count = 5; // Кол-во зомби будет спавниться
-    public int indexSpawwners = 0; // Индекс спавнера
+    [SerializeField] public Vector3[] spawnPosition;
 
-    public bool waveIsDone = false; // Волна закончилась
+    //public int count = 5; 
+    //public int indexSpawwners = 0; 
+    public float spanwTime = 0.2f;
 
-    private void SpawnZ(GameObject spawner)
+    private void SetPosition(GameObject spawner,int indexPosiiton)
     {
-        Vector3 spawn = new Vector3(spawner.transform.position.x + Random.Range(0, 2), spawner.transform.position.y + Random.Range(0, 2), spawner.transform.position.z);
-        Instantiate(zombie, spawner.transform.position, Quaternion.identity); // спавним зомби
+
+        Vector3 spawn = new Vector3(spawner.transform.position.x + spawnPosition[indexPosiiton].x, 
+                                    spawner.transform.position.y, 
+                                    spawner.transform.position.z + spawnPosition[indexPosiiton].z);
+        Instantiate(Zombie, spawn, Quaternion.identity); 
     }
 
-    private void Update()
+    public IEnumerator Spawner(int count, int indexSpawner)
     {
-        if (waveIsDone) // Если волна закончилась спавним кол-во зомби
+        for (int i = 0; i < count; i++)
         {
-            for (int i = 0; i < count; i++)
-            {
-                SpawnZ(zSpawners[indexSpawwners]);
-            }
-            waveIsDone = false;
+            int rnd = Random.Range(0, spawnPosition.Length);
+            SetPosition(ZombieSpawners[indexSpawner], rnd);
+            yield return new WaitForSeconds(spanwTime);
         }
     }
+
+    public void StartSpawn(int count, int indexSpawner)
+    {
+        StartCoroutine(Spawner(count, indexSpawner));
+    }
+    
+    //private void FixedUpdate()
+    //{
+    //    if (waveIsStart) 
+    //    {
+    //        StartCoroutine(Spawner(count, indexSpawwners));
+    //        waveIsStart = false;
+    //    }
+    //}
 }
