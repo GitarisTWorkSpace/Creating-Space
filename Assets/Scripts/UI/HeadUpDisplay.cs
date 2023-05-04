@@ -11,6 +11,8 @@ public class HeadUpDisplay : MonoBehaviour
     [SerializeField] public TMP_Text AmmoInWeapon; // UI текст со значением кол-во патронов в обойме
     [SerializeField] public TMP_Text AmmoInInventory; // UI текст со значением кол-во патронов у игрока
 
+    [SerializeField] public TMP_Text PressE;
+
     [SerializeField] public GameObject PausePanel;
     private bool pauseIsActive = false;
 
@@ -28,6 +30,14 @@ public class HeadUpDisplay : MonoBehaviour
         }
 
         Time.timeScale = pauseIsActive ? 0f : 1f;
+    }
+
+    public void ActivePressE(bool isActive)
+    {
+        if (isActive)
+            PressE.text = "E";
+        if (!isActive)
+            PressE.text = "";
     }
 
     public void IsPaused(bool value)
