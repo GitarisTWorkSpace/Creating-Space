@@ -70,7 +70,9 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        ammoInWeapon--;
+        //if(!isShword)
+            ammoInWeapon--;
+
         SendInformation();
     }
 
