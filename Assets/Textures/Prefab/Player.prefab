@@ -8515,6 +8515,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Hand: {fileID: 8963535474961506821}
   countMediKitIninvenory: 000000000000000000000000
   activMediKit: 0
 --- !u!1 &8963535476333221935

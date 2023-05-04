@@ -8,7 +8,6 @@ public class PickUpWeapon : MonoBehaviour
     [SerializeField] public float distance = 15f;
 
     private GameObject currentWeapon;
-    private bool canPickUp;
 
     private void PickUp()
     {
@@ -19,16 +18,34 @@ public class PickUpWeapon : MonoBehaviour
             if(hit.transform.tag == "Weapon")
             {
                 currentWeapon = hit.transform.gameObject;
-                currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
-                currentWeapon.GetComponent<Weapon>().isActive = true;
-                currentWeapon.GetComponent<Weapon>().SendInformation();
+                SetProperty(currentWeapon);
+                
+                SetPosition(currentWeapon);
 
-                currentWeapon.transform.parent = transform;
-                Player.GetComponent<Inventory>().WeaponInInventory[currentWeapon.GetComponent<Weapon>().typeWeapon] = currentWeapon;
-                currentWeapon.transform.localPosition = new Vector3(0.6f , -1.45f, 2.7f);
-                currentWeapon.transform.localEulerAngles = new Vector3(0, -90f, 0);
+                SetInInvenetory(currentWeapon);
             }
         }
+    }
+
+    private void SetProperty(GameObject currentWeapon)
+    {
+        currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
+        currentWeapon.GetComponent<Weapon>().isActive = true;
+        currentWeapon.GetComponent<Weapon>().SendInformation();
+    }
+
+    private void SetInInvenetory(GameObject currentWeapon)
+    {
+        Debug.Log(transform.childCount);
+        Player.GetComponent<Inventory>().WeaponInInventory[transform.childCount - 1] = currentWeapon;
+        Player.GetComponent<Inventory>().SetWeapon(transform.childCount - 1);
+    }
+
+    private void SetPosition(GameObject currentWeapon)
+    {
+        currentWeapon.transform.parent = transform;
+        currentWeapon.transform.localPosition = new Vector3(0.6f, -1.45f, 2.7f);
+        currentWeapon.transform.localEulerAngles = new Vector3(0, -90f, 0);
     }
 
     private void Update()

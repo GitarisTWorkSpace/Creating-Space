@@ -3,6 +3,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] public GameObject[] WeaponInInventory = new GameObject[3];
+    [SerializeField] public GameObject Hand;
     [SerializeField] public int[] countMediKitIninvenory = new int[3];
     [SerializeField] public int activMediKit;
 
@@ -14,6 +15,19 @@ public class Inventory : MonoBehaviour
 
             if (weapon.GetComponent<Weapon>().typeWeapon == typeWeapon)
                 weapon.GetComponent<Weapon>().GetAmmo(ammo);
+        }
+    }
+
+    public void SetWeapon(int index)
+    {
+        Hand.transform.GetChild(index).gameObject.SetActive(true);
+        for (int i = 0; i < Hand.transform.childCount - 1; i++)
+        {
+            if (i != index)
+            {
+                Hand.transform.GetChild(i).gameObject.SetActive(false);
+                Hand.transform.GetChild(i).gameObject.GetComponent<Weapon>().isActive = false;
+            }
         }
     }
 
@@ -48,10 +62,6 @@ public class Inventory : MonoBehaviour
                 activMediKit = 0;
             }
         }
-        //else if (Input.GetKeyDown(KeyCode.Tab) && countMediKitIninvenory.Length > activMediKit)
-        //{
-        //    activMediKit = 0;
-        //}
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
