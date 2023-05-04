@@ -31,6 +31,10 @@ public class SpawnZombie : MonoBehaviour
         }
     }
 
+    public void StartSpawn(int count, int indexSpawner)
+    {
+        StartCoroutine(Spawner(count, indexSpawner));
+    }
     
     //private void FixedUpdate()
     //{

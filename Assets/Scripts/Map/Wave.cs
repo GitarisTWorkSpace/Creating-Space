@@ -4,21 +4,23 @@ public class Wave : MonoBehaviour
 {
     [SerializeField] public GameObject SpawnerZombie;
     [SerializeField] public GameObject SpawnerItems;
-    [SerializeField] public int waveCount;
-    [SerializeField] public int countZombie;
-    [SerializeField] public int indexspawner;
+    [SerializeField] public GameObject HUD;
+    [SerializeField] public int numOfWave;
     [SerializeField] public bool waveIsEnd;
+    [SerializeField] public string difficulty;
 
-    public void GetWaveInformation()
+    public void StartWave()
     {
-        return;
+        difficulty = HUD.GetComponent<MainSettings>().difficulty;
+        var difficult = new Difficulty();
+        difficult.SetWaveInfo(difficulty, numOfWave, SpawnerZombie);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Player")
         {
-            StartCoroutine(SpawnerZombie.GetComponent<SpawnZombie>().Spawner(countZombie, indexspawner));
+            StartWave();
         }
     }
 
@@ -26,7 +28,7 @@ public class Wave : MonoBehaviour
     {
         if (waveIsEnd)
         {
-            SpawnerItems.GetComponent<ItemSpawner>().Spawner(waveCount);
+            SpawnerItems.GetComponent<ItemSpawner>().Spawner(numOfWave);
             waveIsEnd = false;
         }
     }

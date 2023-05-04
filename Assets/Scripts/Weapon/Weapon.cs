@@ -111,7 +111,9 @@ public class Weapon : MonoBehaviour
 
         if (maxAmmoInInventory < ammoInInventory)
             ammoInInventory = maxAmmoInInventory;
-        SendInformation();
+
+        if(isActive)
+            SendInformation();
     }
 
     public void SendInformation()
