@@ -64,7 +64,7 @@ public class Weapon : MonoBehaviour
 
         if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
         {
-            Debug.Log("Попал в " + hit.transform.gameObject.name);
+            //Debug.Log("Попал в " + hit.transform.gameObject.name);
             if (hit.transform.tag == "Zombie")
             {
                 hit.transform.gameObject.GetComponent<Zombie>().healthPointZ -= damage;

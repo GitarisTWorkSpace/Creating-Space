@@ -5,22 +5,18 @@ public class Difficulty
     private int countZombie;
     private int indexSpawner;
     
-    public void SetWaveInfo(string difficulty, int numOfWave, GameObject spawnerZombie)
+    public int SetWaveInfo(string difficulty, int numOfWave, GameObject spawnerZombie)
     {
         switch (difficulty) 
         {
             case "Easy":
-                Easy(numOfWave, spawnerZombie);
-                break;
+                
             case "Medium":
-                Medium(numOfWave, spawnerZombie);
-                break;
+                return Medium(numOfWave, spawnerZombie);
             case "Hard":
-                Hard(numOfWave, spawnerZombie);
-                break;
-            default: 
-                Easy(numOfWave, spawnerZombie);
-                break;
+                return Hard(numOfWave, spawnerZombie);
+            default:
+                return Easy(numOfWave, spawnerZombie);
         }
     }
 
@@ -39,112 +35,117 @@ public class Difficulty
         }
     }
 
-    private void Easy(int numOfWave, GameObject spawnerZombie)
+    private int Easy(int numOfWave, GameObject spawnerZombie)
     {
         switch (numOfWave)
         {
             case 1:
                 countZombie = 2;
                 indexSpawner = 0;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 1;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                return 4;
             case 2:
                 countZombie = 5;
                 indexSpawner = 1;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 3;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                return 10;
             case 3:
                 countZombie = 7;
                 indexSpawner = 2;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 0;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                return 14;
             default:
-                return;
+                return 0;
         }
     }
 
-    private void Medium(int numOfWave, GameObject spawnerZombie)
+    private int Medium(int numOfWave, GameObject spawnerZombie)
     {
         switch (numOfWave)
         {
             case 1:
                 countZombie = 3;
                 indexSpawner = 1;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
+                Debug.Log("Spawn1");
                 indexSpawner = 2;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                Debug.Log("Spawn2");
+                return 6;
             case 2:
                 countZombie = 5;
                 indexSpawner = 2;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
+                Debug.Log("Spawn1");
                 indexSpawner = 3;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
+                Debug.Log("Spawn2");
                 indexSpawner = 0;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                Debug.Log("Spawn3");
+                return 15;
             case 3:
                 countZombie = 8;
                 indexSpawner = 0;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 3;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 1;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                return 24;
             default:
-                return;
+                return 0;
         }
     }
 
-    private void Hard(int numOfWave, GameObject spawnerZombie)
+    private int Hard(int numOfWave, GameObject spawnerZombie)
     {
         switch (numOfWave)
         {
             case 1:
                 countZombie = 4;
                 indexSpawner = 1;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 2;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 3;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                return 12;
             case 2:
                 countZombie = 5;
                 indexSpawner = 0;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 1;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 2;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 3;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                return 20;
             case 3:
                 countZombie = 8;
                 indexSpawner = 2;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 0;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 3;
-                StartSpawn(spawnerZombie);
+                StartSpawn(spawnerZombie, numOfWave);
                 indexSpawner = 1;
-                StartSpawn(spawnerZombie);
-                break;
+                StartSpawn(spawnerZombie, numOfWave);
+                return 32;
             default:
-                return;
+                return 0;
         }
     }
 
-    private void StartSpawn(GameObject spawnerZombie)
+    private void StartSpawn(GameObject spawnerZombie, int numOfWave)
     {
-        spawnerZombie.GetComponent<SpawnZombie>().StartCoroutine(spawnerZombie.GetComponent<SpawnZombie>().Spawner(countZombie, indexSpawner));
+        spawnerZombie.GetComponent<SpawnZombie>().StartCoroutine(spawnerZombie.GetComponent<SpawnZombie>().Spawner(countZombie, indexSpawner, numOfWave));
     }
 }

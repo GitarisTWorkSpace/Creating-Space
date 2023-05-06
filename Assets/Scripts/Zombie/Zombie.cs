@@ -3,6 +3,7 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     [SerializeField] public Difficulty difficulty = new Difficulty();
+    [SerializeField] public GameObject Wave;
     [SerializeField] public string difficult;
     [SerializeField] public float healthPointZ = 150f;
     [SerializeField] public float damage = 5f;
@@ -19,6 +20,7 @@ public class Zombie : MonoBehaviour
     {
         damage = difficulty.ZombieDamage(difficult);
         if (healthPointZ <= 0){
+            if (Wave != null) Wave.GetComponent<Wave>().countZombie--;
             Destroy(gameObject, deathTime);
         }
     }

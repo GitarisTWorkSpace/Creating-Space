@@ -12,6 +12,7 @@ public class HeadUpDisplay : MonoBehaviour
     [SerializeField] public TMP_Text AmmoInInventory; // UI текст со значением кол-во патронов у игрока
 
     [SerializeField] public TMP_Text PressE;
+    [SerializeField] public TMP_Text CountZombieLost;
 
     [SerializeField] public GameObject DeadPanel;
     private bool deadIsActive = false;
@@ -35,6 +36,11 @@ public class HeadUpDisplay : MonoBehaviour
     public void SetInterectebleText(string text)
     {
         PressE.text = text;
+    }
+
+    public void SetCountZombie(int count)
+    {
+        CountZombieLost.text = count.ToString();
     }
 
     public void IsPaused(bool status) 

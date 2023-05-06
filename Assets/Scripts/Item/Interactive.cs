@@ -11,7 +11,7 @@ public class Interactive : MonoBehaviour
     {
        if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, range))
        {
-            Debug.Log("Смотрю в " + hit.transform.gameObject.name);
+            //Debug.Log("Смотрю в " + hit.transform.gameObject.name);
 
             if (Input.GetKeyDown(KeyCode.E)) DoSomething();
 
