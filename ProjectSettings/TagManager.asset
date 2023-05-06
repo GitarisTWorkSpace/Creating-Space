@@ -9,6 +9,7 @@ TagManager:
   - StartWave
   - Door
   - Note
+  - KeyDoor
   layers:
   - Default
   - TransparentFX

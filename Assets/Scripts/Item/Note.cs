@@ -31,9 +31,9 @@ public class Note : MonoBehaviour
         Time.timeScale = isActive ? 0f : 1f;
     }
 
-    public void Close(bool value)
+    public void Close(bool status)
     {
-        isActive = false;
+        isActive = status;
         Read();
     }
 }

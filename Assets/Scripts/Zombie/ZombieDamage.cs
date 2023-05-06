@@ -5,13 +5,21 @@ using UnityEngine;
 public class ZombieDamage : MonoBehaviour
 {
     private float damage;
+    private float fireRate;
+    private float nextDamage;
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        damage = transform.parent.gameObject.GetComponent<Zombie>().damage;
+        fireRate = transform.parent.gameObject.GetComponent<Zombie>().fireRate;
+
+        if (other.gameObject.tag == "Player")
         {
-            damage = transform.parent.gameObject.GetComponent<Zombie>().damage;
-            other.GetComponent<Health>().GetDamage(damage);
+            if(Time.time > nextDamage)
+            {
+                nextDamage = Time.time + fireRate;
+                other.GetComponent<Health>().GetDamage(damage);
+            }
         }
     }
 }

@@ -21,7 +21,10 @@ public class Interactive : MonoBehaviour
 
     private void InteractiveItem()
     {
-        if (hit.transform.tag == "Door" || hit.transform.tag == "Note" || hit.transform.tag == "Weapon")
+        if (hit.transform.tag == "Door" || 
+            hit.transform.tag == "Note" || 
+            hit.transform.tag == "Weapon" || 
+            hit.transform.tag == "KeyDoor")
             HUD.GetComponent<HeadUpDisplay>().ActivePressE(true);
         else
             HUD.GetComponent<HeadUpDisplay>().ActivePressE(false);
@@ -30,9 +33,21 @@ public class Interactive : MonoBehaviour
     private void DoSomething()
     {
         if (hit.transform.tag == "Door")
-            hit.transform.gameObject.GetComponent<Door>().Open();
+        {
+            if(!hit.transform.parent.gameObject.GetComponent<Door>().needKey)
+            {
+                hit.transform.parent.gameObject.GetComponent<Door>().Open();
+            }
+            else
+            {
+                HUD.GetComponent<HeadUpDisplay>().SetInterectebleText("Нужен ключ");
+            }
+        }
 
         if (hit.transform.tag == "Note")
             hit.transform.gameObject.GetComponent<Note>().Read();
+
+        if(hit.transform.tag == "KeyDoor")
+            hit.transform.gameObject.GetComponent<KeyDoor>().GetKey();
     }
 }

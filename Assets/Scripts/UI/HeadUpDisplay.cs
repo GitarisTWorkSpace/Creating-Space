@@ -13,23 +13,15 @@ public class HeadUpDisplay : MonoBehaviour
 
     [SerializeField] public TMP_Text PressE;
 
+    [SerializeField] public GameObject DeadPanel;
+    private bool deadIsActive = false;
+
     [SerializeField] public GameObject PausePanel;
     private bool pauseIsActive = false;
 
     public void ToStart()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-
-    private void ActivePause()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PausePanel.SetActive(true);
-            pauseIsActive = true;
-        }
-
-        Time.timeScale = pauseIsActive ? 0f : 1f;
     }
 
     public void ActivePressE(bool isActive)
@@ -40,9 +32,32 @@ public class HeadUpDisplay : MonoBehaviour
             PressE.text = "";
     }
 
-    public void IsPaused(bool value)
+    public void SetInterectebleText(string text)
     {
-        pauseIsActive = value;
+        PressE.text = text;
+    }
+
+    public void IsPaused(bool status) 
+    { 
+        pauseIsActive = status; 
+        Time.timeScale = pauseIsActive ? 0f : 1f; 
+    }
+
+    public void ActiveDeadScrin(bool status)
+    {
+        deadIsActive = status;
+        if (!deadIsActive)
+        {
+            DeadPanel.SetActive(true);
+            deadIsActive = true;
+        }
+        else if (deadIsActive)
+        {
+            DeadPanel.SetActive(false);
+            deadIsActive = false;
+        }
+
+        Time.timeScale = deadIsActive ? 0f : 1f;
     }
 
     public void GetAmmoInformation(int ammoInWeapon, int ammoInInventory)
@@ -60,5 +75,15 @@ public class HeadUpDisplay : MonoBehaviour
     private void Update()
     {
         ActivePause();    
+    }
+
+    private void ActivePause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PausePanel.SetActive(true);
+            pauseIsActive = true;
+            Time.timeScale = 0f;
+        }
     }
 }

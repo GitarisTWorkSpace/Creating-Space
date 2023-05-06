@@ -6,6 +6,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] public string difficult;
     [SerializeField] public float healthPointZ = 150f;
     [SerializeField] public float damage = 5f;
+    [SerializeField] public float fireRate = 3f;
     [SerializeField] private float deathTime = 2f;
 
     private void Awake()

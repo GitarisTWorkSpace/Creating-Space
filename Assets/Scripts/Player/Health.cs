@@ -26,6 +26,21 @@ public class Health : MonoBehaviour
         SendInformation();
     }
 
+    private void DeadScrin()
+    {
+        if(healthPoint <= 0)
+        {
+            healthPoint = 0;
+            HUD.GetComponent<HeadUpDisplay>().ActiveDeadScrin(!true);
+            healthPoint = maxHealthPoint;
+        }
+    }
+
+    private void Update()
+    {
+        DeadScrin();
+    }
+
     private void SendInformation()
     {
         HUD.GetComponent<HeadUpDisplay>().GetHealthInformation(healthPoint);
