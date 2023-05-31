@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3919496874465642937}
   m_Layer: 0
   m_Name: Ammonation
-  m_TagString: Weapon
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddbab20aa6fb0e24b92fe0828193717e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: 
+  typeWeapon: 0
   ammo: 0

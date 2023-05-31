@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 30
   fireRate: 0.1
-  reload: 5
+  reload: 2
   range: 75
   typeWeapon: 2
   isActive: 0

@@ -21,11 +21,13 @@ public class Note : MonoBehaviour
         {
             NotePanel.SetActive(true);
             isActive = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else if (isActive)
         {
             NotePanel.SetActive(false);
             isActive = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         Time.timeScale = isActive ? 0f : 1f;

@@ -4,6 +4,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] public GameObject[] WeaponInInventory = new GameObject[3];
     [SerializeField] public GameObject Hand;
+    [SerializeField] public GameObject HUD;
     [SerializeField] public int[] countMediKitIninvenory = new int[3];
     [SerializeField] public int activMediKit;
     [SerializeField] private int activeWeapon = 0;
@@ -110,6 +111,7 @@ public class Inventory : MonoBehaviour
             {
                 activMediKit = 0;
             }
+            HUD.GetComponent<HeadUpDisplay>().GetMediKitInfo(activMediKit, countMediKitIninvenory[activMediKit]);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))

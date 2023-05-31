@@ -127,18 +127,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ed1b57c8ae5c341aeb4cf27b34f72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 50
   fireRate: 3
   reload: 0
   range: 15
-  indexWeapon: 1
-  ammoInWeapon: 10
-  maxAmmoInWeapon: 0
-  ammoInInventory: 0
-  maxAmmoInInventory: 0
+  typeWeapon: 0
   isActive: 0
   isShword: 1
   fireParticle: {fileID: 0}
   fireSound: {fileID: 0}
   audioSource: {fileID: 0}
   playerCamera: {fileID: 0}
+  HUD: {fileID: 0}
+  ammoInWeapon: 0
+  maxAmmoInWeapon: 0
+  ammoInInventory: 0
+  maxAmmoInInventory: 0

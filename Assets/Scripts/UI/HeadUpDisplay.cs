@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class HeadUpDisplay : MonoBehaviour
 {
     [SerializeField] public TMP_Text HealthText; // UI текст со значением кол-во здоровья
+    [SerializeField] public TMP_Text Medikit;
+    [SerializeField] public TMP_Text CountMediKit;
     [SerializeField] public Slider HealthSlider; // UI Слайдер для показания здоровья игрока
 
     [SerializeField] public TMP_Text AmmoInWeapon; // UI текст со значением кол-во патронов в обойме
@@ -20,6 +22,10 @@ public class HeadUpDisplay : MonoBehaviour
     [SerializeField] public GameObject PausePanel;
     private bool pauseIsActive = false;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     public void ToStart()
     {
         SceneManager.LoadScene("MainMenu");
@@ -46,6 +52,7 @@ public class HeadUpDisplay : MonoBehaviour
     public void IsPaused(bool status) 
     { 
         pauseIsActive = status; 
+        if (!pauseIsActive) Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = pauseIsActive ? 0f : 1f; 
     }
 
@@ -56,11 +63,13 @@ public class HeadUpDisplay : MonoBehaviour
         {
             DeadPanel.SetActive(true);
             deadIsActive = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else if (deadIsActive)
         {
             DeadPanel.SetActive(false);
             deadIsActive = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         Time.timeScale = deadIsActive ? 0f : 1f;
@@ -78,6 +87,12 @@ public class HeadUpDisplay : MonoBehaviour
         HealthSlider.value = healthPoint;
     }
 
+    public void GetMediKitInfo(int indexMediKit, int countMedicit)
+    {
+        Medikit.text = indexMediKit.ToString();
+        CountMediKit.text = countMedicit.ToString();
+    }
+
     private void Update()
     {
         ActivePause();    
@@ -89,6 +104,7 @@ public class HeadUpDisplay : MonoBehaviour
         {
             PausePanel.SetActive(true);
             pauseIsActive = true;
+            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
         }
     }

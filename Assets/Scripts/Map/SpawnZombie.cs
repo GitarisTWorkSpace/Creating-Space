@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class SpawnZombie : MonoBehaviour
 {
-    [SerializeField] public GameObject Zombie; 
+    [SerializeField] public GameObject Zombie;
+    [SerializeField] public GameObject CountZombie;
     [SerializeField] public GameObject[] ZombieSpawners;
     [SerializeField] public GameObject[] WaveArr;
 
@@ -18,7 +19,7 @@ public class SpawnZombie : MonoBehaviour
         Vector3 spawn = new Vector3(spawner.transform.position.x + spawnPosition[indexPosiiton].x, 
                                     spawner.transform.position.y, 
                                     spawner.transform.position.z + spawnPosition[indexPosiiton].z);
-        Instantiate(empty, spawn, Quaternion.identity); 
+        Instantiate(empty, spawn, Quaternion.identity, CountZombie.transform); 
     }
 
     public IEnumerator Spawner(int count, int indexSpawner, int numOfWave)

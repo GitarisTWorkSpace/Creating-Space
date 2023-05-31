@@ -870,8 +870,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 500, y: -160}
-  m_SizeDelta: {x: 800, y: 180}
+  m_AnchoredPosition: {x: 590, y: -184}
+  m_SizeDelta: {x: 968.1, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &75417511
 MonoBehaviour:
@@ -893,7 +893,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Left 4 Dead 3
+  m_text: 'Infected: G-virus'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -902,8 +902,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280051479
-  m_fontColor: {r: 0.08993414, g: 0.4056604, b: 0.10975586, a: 1}
+    rgba: 4282364983
+  m_fontColor: {r: 0.21693665, g: 0.7075472, b: 0.24759981, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -13872,6 +13872,7 @@ GameObject:
   - component: {fileID: 1567508337}
   - component: {fileID: 1567508339}
   - component: {fileID: 1567508338}
+  - component: {fileID: 1567508340}
   m_Layer: 5
   m_Name: Game Stg Panel
   m_TagString: Untagged
@@ -13939,6 +13940,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567508336}
   m_CullTransparentMesh: 1
+--- !u!114 &1567508340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567508336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4355bafd09d3844a2772ec79b68621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 
 --- !u!1 &1587386955
 GameObject:
   m_ObjectHideFlags: 0
@@ -15464,7 +15478,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1567508340}
+        m_TargetAssemblyTypeName: MainSettings, Assembly-CSharp
+        m_MethodName: SwichDifficulty
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1865839990
 MonoBehaviour:

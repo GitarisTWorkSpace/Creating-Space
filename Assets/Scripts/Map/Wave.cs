@@ -3,6 +3,7 @@ using UnityEngine;
 public class Wave : MonoBehaviour
 {
     [SerializeField] public GameObject SpawnerZombie;
+    [SerializeField] public GameObject CountZombie;
     [SerializeField] public GameObject SpawnerItems;
     [SerializeField] public GameObject NextStep;
     [SerializeField] public GameObject HUD;
@@ -16,7 +17,7 @@ public class Wave : MonoBehaviour
     {
         difficulty = HUD.GetComponent<MainSettings>().difficulty;
         var difficult = new Difficulty();
-        countZombie = difficult.SetWaveInfo(difficulty, numOfWave, SpawnerZombie);
+        countZombie = CountZombie.transform.childCount;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,7 +31,7 @@ public class Wave : MonoBehaviour
 
     private void Update()
     {
-        if (countZombie <= 0) waveIsEnd = true;
+        if (countZombie <= 0 && waveIsStart) waveIsEnd = true;
 
         if(waveIsStart) HUD.GetComponent<HeadUpDisplay>().SetCountZombie(countZombie);
 
