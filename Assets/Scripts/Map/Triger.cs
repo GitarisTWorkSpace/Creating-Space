@@ -14,7 +14,7 @@ public class Triger : MonoBehaviour
             if (NextStep != null) NextStep.SetActive(true);
             else if (NextStep == null)
             {
-                HUD.GetComponent<HeadUpDisplay>().ActiveDeadScrin(!true);
+                //HUD.GetComponent<HeadUpDisplay>().ActiveDeadScrin(!true);
             }
 
             Destroy(gameObject);

@@ -2,47 +2,22 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] public GameObject HUD;
-
-    public float healthPoint = 100f; // Кол-во здаровья игрока 
-
+    [SerializeField] public float healthPoint = 100f; // Кол-во здоровья игрока 
     [SerializeField] private float maxHealthPoint = 100f; // Максимальное здоровье игрока
 
-    private void Start()
-    {
-        SendInformation();
-    }
-
-    public void GetDamage(float damage)
+    public void TakeDamage(float damage)
     {
         healthPoint -= damage;
-        SendInformation();
     }
 
-    public void GetHealing(float health)
+    public void TakeHealing(float health)
     {
         healthPoint += health;
         if (healthPoint > maxHealthPoint) healthPoint = maxHealthPoint;
-        SendInformation();
     }
 
-    private void DeadScrin()
+    private void PlayerDead()
     {
-        if(healthPoint <= 0)
-        {
-            healthPoint = 0;
-            HUD.GetComponent<HeadUpDisplay>().ActiveDeadScrin(!true);
-            healthPoint = maxHealthPoint;
-        }
-    }
-
-    private void Update()
-    {
-        DeadScrin();
-    }
-
-    private void SendInformation()
-    {
-        HUD.GetComponent<HeadUpDisplay>().GetHealthInformation(healthPoint);
+        if(healthPoint <= 0) healthPoint = 0;
     }
 }

@@ -5,107 +5,148 @@ using UnityEngine.SceneManagement;
 
 public class HeadUpDisplay : MonoBehaviour
 {
-    [SerializeField] public TMP_Text HealthText; // UI текст со значением кол-во здоровья
-    [SerializeField] public TMP_Text Medikit;
+    #region Health
+    [Header("Health")]
+
+    [SerializeField] public TMP_Text HealthPoints;
+    [SerializeField] public Slider HealthPointsSlider;
     [SerializeField] public TMP_Text CountMediKit;
-    [SerializeField] public Slider HealthSlider; // UI Слайдер для показания здоровья игрока
+    #endregion
 
-    [SerializeField] public TMP_Text AmmoInWeapon; // UI текст со значением кол-во патронов в обойме
-    [SerializeField] public TMP_Text AmmoInInventory; // UI текст со значением кол-во патронов у игрока
+    #region MediKit
+    [Header("MediKit")]
+    [SerializeField] public Image MediKitImage;
+    [SerializeField] public Sprite[] MediKitSprites;
+    #endregion
 
-    [SerializeField] public TMP_Text PressE;
-    [SerializeField] public TMP_Text CountZombieLost;
+    #region Weapon
+    [Header("Weapon")]
 
-    [SerializeField] public GameObject DeadPanel;
-    private bool deadIsActive = false;
+    [SerializeField] public TMP_Text IndexWeaponInHand;
+    [SerializeField] public TMP_Text AmmoInWeapon;
+    [SerializeField] public TMP_Text AmmoInInventory;
+    #endregion
+
+    #region Panels
+    [Header("Panels")]
 
     [SerializeField] public GameObject PausePanel;
-    private bool pauseIsActive = false;
+    private bool pausePanelisActive = false;
+
+    [SerializeField] public Slider SensivitySlider;
+
+    [SerializeField] public GameObject ReaderPanel;
+    [SerializeField] public TMP_Text HeaderText;
+    [SerializeField] public TMP_Text ReaderText;
+    private bool readrePanelIsActive = false;
+
+    [SerializeField] public GameObject PressE;
+    private bool pressButtonIsActive = false;
+ 
+    [SerializeField] public GameObject DeadPanel;
+    private bool deadPanelIsActive = false;
+    #endregion
+
+    #region Scripts
+    [Header("Scripts")]
+
+    [SerializeField] public Health Health;
+    [SerializeField] public Inventory Inventory;
+    [SerializeField] public PlayerMoveController PlayerController;
+    [SerializeField] public Weapon Weapon;
+    [SerializeField] public MeleeWeapon MeleeWeapon;
+    #endregion
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        SetSensivity(20f);
     }
-    public void ToStart()
+
+    #region Panels Method
+    public void ActivePausePanel(bool value)
+    {
+        pausePanelisActive = value;
+    }
+
+    public void ActiveReader(bool value)
+    {
+        readrePanelIsActive = value;
+    }
+
+    public void GetReaderPanelInfo(string headerText, string mainReaderText)
+    {
+        HeaderText.text = headerText;
+        ReaderText.text = mainReaderText;
+        ActiveReader(true);
+    }
+
+    public void ActivePressButton(bool value)
+    {
+        pressButtonIsActive = value;
+    }
+
+    public void ActiveDeadPanel(bool value)
+    {
+        deadPanelIsActive = value;
+    }
+
+    public void ToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
+    #endregion
 
-    public void ActivePressE(bool isActive)
+    public void SetSensivity(float value)
     {
-        if (isActive)
-            PressE.text = "E";
-        if (!isActive)
-            PressE.text = "";
+        PlayerController.sensivity = value;
+        SensivitySlider.value = value;
     }
 
-    public void SetInterectebleText(string text)
+    #region Private Method
+    private void UpdateHealhPointsInfo()
     {
-        PressE.text = text;
+        HealthPoints.text = Health.healthPoint.ToString();
+        HealthPointsSlider.maxValue = 100f;
+        HealthPointsSlider.value = Health.healthPoint;
     }
 
-    public void SetCountZombie(int count)
+    private void UpdateMediKItInfo()
     {
-        CountZombieLost.text = count.ToString();
+        CountMediKit.text = Inventory.countMediKitIninvenory[Inventory.activMediKit].ToString();
+        MediKitImage.sprite = MediKitSprites[Inventory.activMediKit];
     }
 
-    public void IsPaused(bool status) 
-    { 
-        pauseIsActive = status; 
-        if (!pauseIsActive) Cursor.lockState = CursorLockMode.Locked;
-        Time.timeScale = pauseIsActive ? 0f : 1f; 
-    }
-
-    public void ActiveDeadScrin(bool status)
+    private void UpdateAmmoInfo()
     {
-        deadIsActive = status;
-        if (!deadIsActive)
+        IndexWeaponInHand.text = Inventory.activeWeapon.ToString();
+        if (Inventory.activeWeapon == 0)
         {
-            DeadPanel.SetActive(true);
-            deadIsActive = true;
-            Cursor.lockState = CursorLockMode.None;
+            AmmoInWeapon.text = Weapon.ammoInWeapon.ToString();
+            AmmoInInventory.text = Weapon.ammoInInventory.ToString();
         }
-        else if (deadIsActive)
+        else
         {
-            DeadPanel.SetActive(false);
-            deadIsActive = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            AmmoInInventory.text = "0";
+            AmmoInWeapon.text = "0";
         }
-
-        Time.timeScale = deadIsActive ? 0f : 1f;
     }
-
-    public void GetAmmoInformation(int ammoInWeapon, int ammoInInventory)
-    {
-        AmmoInInventory.text = ammoInInventory.ToString();
-        AmmoInWeapon.text = ammoInWeapon.ToString();
-    }
-
-    public void GetHealthInformation(float healthPoint)
-    {
-        HealthText.text = Mathf.Round(healthPoint).ToString();
-        HealthSlider.value = healthPoint;
-    }
-
-    public void GetMediKitInfo(int indexMediKit, int countMedicit)
-    {
-        Medikit.text = indexMediKit.ToString();
-        CountMediKit.text = countMedicit.ToString();
-    }
+    #endregion
 
     private void Update()
     {
-        ActivePause();    
-    }
+        UpdateHealhPointsInfo();
+        UpdateMediKItInfo();
+        UpdateAmmoInfo();
 
-    private void ActivePause()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PausePanel.SetActive(true);
-            pauseIsActive = true;
-            Cursor.lockState = CursorLockMode.None;
-            Time.timeScale = 0f;
-        }
+        PausePanel.SetActive(pausePanelisActive);
+        ReaderPanel.SetActive(readrePanelIsActive);
+        DeadPanel.SetActive(deadPanelIsActive);
+        PressE.SetActive(pressButtonIsActive);
+
+        if (readrePanelIsActive || pausePanelisActive || deadPanelIsActive) Cursor.lockState = CursorLockMode.None;
+        else Cursor.lockState = CursorLockMode.Locked;
+
+        Time.timeScale = pausePanelisActive || readrePanelIsActive || deadPanelIsActive ? 0 : 1;
     }
 }

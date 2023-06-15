@@ -10,7 +10,7 @@ public class Difficulty
         switch (difficulty) 
         {
             case "Easy":
-                
+                return Easy(numOfWave, spawnerZombie);
             case "Medium":
                 return Medium(numOfWave, spawnerZombie);
             case "Hard":

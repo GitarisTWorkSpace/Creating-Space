@@ -2,36 +2,32 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] public GameObject[] WeaponInInventory = new GameObject[3];
     [SerializeField] public GameObject Hand;
-    [SerializeField] public GameObject HUD;
     [SerializeField] public int[] countMediKitIninvenory = new int[3];
-    [SerializeField] public int activMediKit;
-    [SerializeField] private int activeWeapon = 0;
+    [SerializeField] public int activMediKit = 0;
+    [SerializeField] public int activeWeapon = 0;
 
-    public void SetAmmoInWeapon(int typeWeapon, int ammo)
+    [SerializeField] public int[] Ammonation = new int[3];
+    [SerializeField] private int[] maxAmmonation = new int[3];
+
+    public void GetAmmonation(int countAmmonation, int typeAmmonation)
     {
-        foreach(var weapon in WeaponInInventory)
-        {
-            if (weapon == null) continue;
-
-            if (weapon.GetComponent<Weapon>().typeWeapon == typeWeapon)
-                weapon.GetComponent<Weapon>().GetAmmo(ammo);
-        }
+        Ammonation[typeAmmonation] += countAmmonation;
     }
 
-    public void SetWeapon(int index)
+    private void CheckAmmonation()
+    {
+        for(int i = 0; i < Ammonation.Length; i++)
+            if(Ammonation[i] > maxAmmonation[i]) Ammonation[i] = maxAmmonation[i];
+    }
+
+    private void SetWeapon(int index)
     {
         Hand.transform.GetChild(index).gameObject.SetActive(true);
-        Hand.transform.GetChild(index).gameObject.GetComponent<Weapon>().isActive = true;
-        Hand.transform.GetChild(index).gameObject.GetComponent<Weapon>().SendInformation();
         for (int i = 0; i < Hand.transform.childCount; i++)
         {
             if (i != index)
-            {
                 Hand.transform.GetChild(i).gameObject.SetActive(false);
-                Hand.transform.GetChild(i).gameObject.GetComponent<Weapon>().isActive = false;
-            }
         }
     }
 
@@ -77,14 +73,11 @@ public class Inventory : MonoBehaviour
 
             SetWeapon(activeWeapon);
         }
-
-
     }
 
     private float Medikit(int index)
     {
         if (countMediKitIninvenory[index] > 0)
-        {
             switch (index)
             {
                 case 0:
@@ -98,7 +91,6 @@ public class Inventory : MonoBehaviour
                     return 100f;
                 default: return 0;
             }
-        }
         return 0;
     }
 
@@ -111,14 +103,14 @@ public class Inventory : MonoBehaviour
             {
                 activMediKit = 0;
             }
-            HUD.GetComponent<HeadUpDisplay>().GetMediKitInfo(activMediKit, countMediKitIninvenory[activMediKit]);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            gameObject.GetComponent<Health>().GetHealing(Medikit(activMediKit));
+            gameObject.GetComponent<Health>().TakeHealing(Medikit(activMediKit));
         }
 
         SwichWeapon();
+        CheckAmmonation();
     }
 }

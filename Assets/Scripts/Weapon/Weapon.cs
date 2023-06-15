@@ -13,7 +13,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] public float range;
     [SerializeField] public int typeWeapon;
     public bool isActive = false;
-    public bool isShword;
     #endregion
 
     #region Объекты
@@ -21,13 +20,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] public AudioClip fireSound;
     [SerializeField] public AudioSource audioSource;
     [SerializeField] public Camera playerCamera;
-    [SerializeField] public GameObject HUD;
+    [SerializeField] public Inventory Inventory;
     #endregion
 
     #region Патроны
-    [SerializeField] private int ammoInWeapon;
+    [SerializeField] public int ammoInWeapon;
     [SerializeField] private int maxAmmoInWeapon;
-    [SerializeField] private int ammoInInventory;
+    [SerializeField] public int ammoInInventory;
     [SerializeField] private int maxAmmoInInventory;
     #endregion
 
@@ -36,26 +35,27 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         playerCamera = FindObjectOfType<Camera>();
-        HUD = FindObjectOfType<HeadUpDisplay>().gameObject;
     }
 
     private void Update()
     {
-        if(ammoInWeapon == 0 && !isShword)
+        if(ammoInWeapon == 0)
         {
             isActive = false;
         }
 
-        if (Input.GetMouseButton(0) && Time.time > nextFire && isActive)
+        if (Input.GetMouseButtonDown(0) && Time.time > nextFire && isActive)
         {
             nextFire = Time.time + fireRate; 
             Shoot();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && !isShword && gameObject.transform.parent != null)
+        if (Input.GetKeyDown(KeyCode.R) && gameObject.transform.parent != null)
         {
             StartCoroutine(RealoadWeapon());
         }
+
+        GetAmmo();
     }
 
     public void Shoot()
@@ -64,17 +64,16 @@ public class Weapon : MonoBehaviour
 
         if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
         {
-            //Debug.Log("Попал в " + hit.transform.gameObject.name);
             if (hit.transform.tag == "Zombie")
             {
                 hit.transform.gameObject.GetComponent<Zombie>().healthPointZ -= damage;
             }
         }
 
-        if(!isShword)
-            ammoInWeapon--;
+        ammoInWeapon--;
 
-        SendInformation();
+        fireParticle.Play();
+        audioSource.Play();
     }
 
     private void Reloading()
@@ -87,13 +86,13 @@ public class Weapon : MonoBehaviour
 
         if (ammoInInventory >= maxAmmoInWeapon)
         {
-            ammoInInventory -= maxAmmoInWeapon - ammoInWeapon;
+            Inventory.Ammonation[typeWeapon] -= maxAmmoInWeapon - ammoInWeapon;
             ammoInWeapon = maxAmmoInWeapon;
         }
         else
         {
             ammoInWeapon += ammoInInventory;
-            ammoInInventory = 0;
+            Inventory.Ammonation[typeWeapon] = 0;
         }
     }
 
@@ -101,24 +100,14 @@ public class Weapon : MonoBehaviour
     {
         isActive = false;
         Reloading();
+        transform.position -= new Vector3(0, 10f,0);
         yield return new WaitForSeconds(reload);
-        SendInformation();
+        transform.position = transform.parent.transform.position;
         isActive = true;
     }
 
-    public void GetAmmo(int ammo)
+    public void GetAmmo()
     {
-        ammoInInventory += ammo;
-
-        if (maxAmmoInInventory < ammoInInventory)
-            ammoInInventory = maxAmmoInInventory;
-
-        if(isActive)
-            SendInformation();
-    }
-
-    public void SendInformation()
-    {
-        HUD.GetComponent<HeadUpDisplay>().GetAmmoInformation(ammoInWeapon, ammoInInventory);
+        ammoInInventory = Inventory.Ammonation[typeWeapon];
     }
 }

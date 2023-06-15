@@ -15,7 +15,6 @@ public class SpawnZombie : MonoBehaviour
     private void SetPosition(GameObject spawner,int indexPosiiton, int numOfWave)
     {
         GameObject empty = Zombie;
-        empty.GetComponent<Zombie>().Wave = WaveArr[numOfWave - 1];
         Vector3 spawn = new Vector3(spawner.transform.position.x + spawnPosition[indexPosiiton].x, 
                                     spawner.transform.position.y, 
                                     spawner.transform.position.z + spawnPosition[indexPosiiton].z);

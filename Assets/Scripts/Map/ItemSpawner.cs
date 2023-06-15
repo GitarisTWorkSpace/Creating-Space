@@ -11,15 +11,13 @@ public class ItemSpawner : MonoBehaviour
 
 	[SerializeField]public int[] maxAmmoInWeapon; 
 
-	//public bool waveIsEnd = false; 
-
 	private void SpawnAmmo(int typeWeapon, int ammonaiton, GameObject spawner)
 	{
 		int ammoInCase = ammonaiton * maxAmmoInWeapon[typeWeapon]; 
 
 		GameObject ammoCase = Ammo; 
-		ammoCase.GetComponent<AmmoKit>().typeWeapon = typeWeapon; 
-		ammoCase.GetComponent<AmmoKit>().ammo = ammoInCase; 
+		ammoCase.GetComponent<AmmoKit>().typeAmmonation = typeWeapon; 
+		ammoCase.GetComponent<AmmoKit>().countAmmonation = ammoInCase; 
 		
 		Instantiate(ammoCase, spawner.transform.position, Quaternion.identity); 
 	}
@@ -39,17 +37,4 @@ public class ItemSpawner : MonoBehaviour
 			SpawnHealing(Random.Range(0, 3), MediKitSpawners[i]);
 		}
     }
-
-   // private void FixedUpdate()
-   // {
-   //     if (waveIsDone) // Если волна закончилась 
-   //     {
-			//for (int i = 0; i < AmmoSpawners.Length; i++) // Спавним объекты
-   //         {
-			//	SpawnAmmo(Random.Range(1, 3), Random.Range(1, 4), AmmoSpawners[i]);
-			//	SpawnHealing(Random.Range(0, 3), MediKitSpawners[i]);
-			//}
-			//waveIsDone = false;
-   //     }
-   // }
 }

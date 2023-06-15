@@ -17,7 +17,8 @@ public class Wave : MonoBehaviour
     {
         difficulty = HUD.GetComponent<MainSettings>().difficulty;
         var difficult = new Difficulty();
-        countZombie = CountZombie.transform.childCount;
+        int countZ = difficult.SetWaveInfo(difficulty, numOfWave, SpawnerZombie);
+        Debug.Log(CountZombie.transform.childCount, CountZombie);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,9 +32,8 @@ public class Wave : MonoBehaviour
 
     private void Update()
     {
+        countZombie = CountZombie.transform.childCount;
         if (countZombie <= 0 && waveIsStart) waveIsEnd = true;
-
-        if(waveIsStart) HUD.GetComponent<HeadUpDisplay>().SetCountZombie(countZombie);
 
         if (waveIsEnd)
         {
